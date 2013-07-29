@@ -9,6 +9,8 @@ gem 'formtastic'
 
 group :development do
   gem "better_errors"
+  gem "debugger"
+  gem "binding_of_caller"
 end
 
 # Use mysql as the database for Active Record

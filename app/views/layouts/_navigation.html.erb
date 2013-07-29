@@ -1,0 +1,14 @@
+<%= link_to "Inicio", root_path, :class => 'brand' %>
+<ul class="nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastrar <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+      <li><%= link_to('Paciente', new_paciente_path) %></li>
+      <li><%= link_to('Procedimento', new_procedimento_path) %></li>
+      <li><%= link_to('Convenio', new_convenio_path) %></li>
+      <li class="divider"></li>
+      <li class="nav-header">Cofinguração</li>
+      <li><a href="#">Dados da Clinica</a></li>
+      </ul>
+    </li>
+</ul>

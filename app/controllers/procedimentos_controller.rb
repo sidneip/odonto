@@ -25,13 +25,12 @@ class ProcedimentosController < ApplicationController
   # POST /procedimentos.json
   def create
     @procedimento = Procedimento.new(procedimento_params)
-
     respond_to do |format|
       if @procedimento.save
         format.html { redirect_to @procedimento, notice: 'Procedimento was successfully created.' }
         format.json { render action: 'show', status: :created, location: @procedimento }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new', notice: "algo errado" }
         format.json { render json: @procedimento.errors, status: :unprocessable_entity }
       end
     end

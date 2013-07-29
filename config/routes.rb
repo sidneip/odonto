@@ -1,6 +1,8 @@
 Odonto::Application.routes.draw do
-  resources :dentistas
+  root to: 'static#index'
 
+  resources :dentistas
+  
   resources :procedimentos
 
   resources :convenios
