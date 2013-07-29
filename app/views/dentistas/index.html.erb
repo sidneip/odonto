@@ -1,0 +1,72 @@
+<%- model_class = Dentista -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:password) %></th>
+      <th><%= model_class.human_attribute_name(:sexo) %></th>
+      <th><%= model_class.human_attribute_name(:data_nasc) %></th>
+      <th><%= model_class.human_attribute_name(:estado_civil) %></th>
+      <th><%= model_class.human_attribute_name(:cep) %></th>
+      <th><%= model_class.human_attribute_name(:rua) %></th>
+      <th><%= model_class.human_attribute_name(:numero) %></th>
+      <th><%= model_class.human_attribute_name(:bairro) %></th>
+      <th><%= model_class.human_attribute_name(:cidade) %></th>
+      <th><%= model_class.human_attribute_name(:uf) %></th>
+      <th><%= model_class.human_attribute_name(:complemento) %></th>
+      <th><%= model_class.human_attribute_name(:telefone) %></th>
+      <th><%= model_class.human_attribute_name(:celular) %></th>
+      <th><%= model_class.human_attribute_name(:identidade_rg) %></th>
+      <th><%= model_class.human_attribute_name(:orgao_rg) %></th>
+      <th><%= model_class.human_attribute_name(:cpf) %></th>
+      <th><%= model_class.human_attribute_name(:cro) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dentistas.each do |dentista| %>
+      <tr>
+        <td><%= link_to dentista.id, dentista_path(dentista) %></td>
+        <td><%= dentista.nome %></td>
+        <td><%= dentista.email %></td>
+        <td><%= dentista.password %></td>
+        <td><%= dentista.sexo %></td>
+        <td><%= dentista.data_nasc %></td>
+        <td><%= dentista.estado_civil %></td>
+        <td><%= dentista.cep %></td>
+        <td><%= dentista.rua %></td>
+        <td><%= dentista.numero %></td>
+        <td><%= dentista.bairro %></td>
+        <td><%= dentista.cidade %></td>
+        <td><%= dentista.uf %></td>
+        <td><%= dentista.complemento %></td>
+        <td><%= dentista.telefone %></td>
+        <td><%= dentista.celular %></td>
+        <td><%= dentista.identidade_rg %></td>
+        <td><%= dentista.orgao_rg %></td>
+        <td><%= dentista.cpf %></td>
+        <td><%= dentista.cro %></td>
+        <td><%=l dentista.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_dentista_path(dentista), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      dentista_path(dentista),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_dentista_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,72 @@
+<%- model_class = Paciente -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:sexo) %></th>
+      <th><%= model_class.human_attribute_name(:data_nascimento) %></th>
+      <th><%= model_class.human_attribute_name(:estado_civil) %></th>
+      <th><%= model_class.human_attribute_name(:nacionalidade) %></th>
+      <th><%= model_class.human_attribute_name(:nome_mae) %></th>
+      <th><%= model_class.human_attribute_name(:cep) %></th>
+      <th><%= model_class.human_attribute_name(:rua) %></th>
+      <th><%= model_class.human_attribute_name(:numero) %></th>
+      <th><%= model_class.human_attribute_name(:bairro) %></th>
+      <th><%= model_class.human_attribute_name(:cidade) %></th>
+      <th><%= model_class.human_attribute_name(:uf) %></th>
+      <th><%= model_class.human_attribute_name(:complemento) %></th>
+      <th><%= model_class.human_attribute_name(:telefone) %></th>
+      <th><%= model_class.human_attribute_name(:celular) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:identidade_rg) %></th>
+      <th><%= model_class.human_attribute_name(:orgao_rg) %></th>
+      <th><%= model_class.human_attribute_name(:cpf) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pacientes.each do |paciente| %>
+      <tr>
+        <td><%= link_to paciente.id, paciente_path(paciente) %></td>
+        <td><%= paciente.nome %></td>
+        <td><%= paciente.sexo %></td>
+        <td><%= paciente.data_nascimento %></td>
+        <td><%= paciente.estado_civil %></td>
+        <td><%= paciente.nacionalidade %></td>
+        <td><%= paciente.nome_mae %></td>
+        <td><%= paciente.cep %></td>
+        <td><%= paciente.rua %></td>
+        <td><%= paciente.numero %></td>
+        <td><%= paciente.bairro %></td>
+        <td><%= paciente.cidade %></td>
+        <td><%= paciente.uf %></td>
+        <td><%= paciente.complemento %></td>
+        <td><%= paciente.telefone %></td>
+        <td><%= paciente.celular %></td>
+        <td><%= paciente.email %></td>
+        <td><%= paciente.identidade_rg %></td>
+        <td><%= paciente.orgao_rg %></td>
+        <td><%= paciente.cpf %></td>
+        <td><%=l paciente.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_paciente_path(paciente), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      paciente_path(paciente),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_paciente_path,
+            :class => 'btn btn-primary' %>
