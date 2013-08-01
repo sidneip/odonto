@@ -1,54 +1,39 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Consulta -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Data:</strong>
-  <%= @consulta.data %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:data) %>:</strong></dt>
+  <dd><%= @consulta.data %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hora_inicio) %>:</strong></dt>
+  <dd><%= @consulta.hora_inicio %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hora_fim) %>:</strong></dt>
+  <dd><%= @consulta.hora_fim %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:tipo) %>:</strong></dt>
+  <dd><%= @consulta.tipo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:procedimento_id) %>:</strong></dt>
+  <dd><%= @consulta.procedimento_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:paciente_id) %>:</strong></dt>
+  <dd><%= @consulta.paciente_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:convenio_id) %>:</strong></dt>
+  <dd><%= @consulta.convenio_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dentista_id) %>:</strong></dt>
+  <dd><%= @consulta.dentista_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:observacao) %>:</strong></dt>
+  <dd><%= @consulta.observacao %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @consulta.status %></dd>
+</dl>
 
-<p>
-  <strong>Hora inicio:</strong>
-  <%= @consulta.hora_inicio %>
-</p>
-
-<p>
-  <strong>Hora fim:</strong>
-  <%= @consulta.hora_fim %>
-</p>
-
-<p>
-  <strong>Tipo:</strong>
-  <%= @consulta.tipo %>
-</p>
-
-<p>
-  <strong>Procedimento:</strong>
-  <%= @consulta.procedimento_id %>
-</p>
-
-<p>
-  <strong>Paciente:</strong>
-  <%= @consulta.paciente_id %>
-</p>
-
-<p>
-  <strong>Convenio:</strong>
-  <%= @consulta.convenio_id %>
-</p>
-
-<p>
-  <strong>Dentista:</strong>
-  <%= @consulta.dentista_id %>
-</p>
-
-<p>
-  <strong>Observacao:</strong>
-  <%= @consulta.observacao %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @consulta.status %>
-</p>
-
-<%= link_to 'Edit', edit_consulta_path(@consulta) %> |
-<%= link_to 'Back', consultas_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              consultas_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_consulta_path(@consulta), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              consulta_path(@consulta),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

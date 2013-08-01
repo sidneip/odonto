@@ -33,7 +33,9 @@
   </div>
   <div class="field">
     <%= f.label :paciente_id %><br>
-    <%= f.number_field :paciente_id %>
+    <%= text_field_tag :paciente_nome %>
+    <%= f.hidden_field :paciente_id %>
+
   </div>
   <div class="field">
     <%= f.label :convenio_id %><br>
@@ -63,17 +65,16 @@
       success: function( xmlResponse ) {
         var data = $( "paciente", xmlResponse ).map(function() {
           return {
-            value: $( "nome", this ).text() + ", " +
-              ( $.trim( $( "nome", this ).text() ) || "(unknown country)" ),
+            value: $( "nome", this ).text() || "(unknown country)" ,
             id: $( "id", this ).text()
           };
         }).get();
-        $( "#consulta_paciente_id" ).autocomplete({
+        $( "#paciente_nome" ).autocomplete({
           source: data,
           minLength: 0,
           select: function(event, ui) {
-                $('#consulta_paciente_id').val(ui.item.nome);
-                return false;
+                $('#paciente_nome').val(ui.item.nome);
+                $('#consulta_paciente_id').val(ui.item.id);
             },
         });
       }

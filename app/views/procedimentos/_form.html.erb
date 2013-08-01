@@ -1,4 +1,4 @@
-<%= semantic_form_for @procedimento, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @procedimento, :html => { :class => 'form-horizontal' } do |f| %>
 <% if @procedimento.errors.any? %>
 <div class="alert alert-error">
 <%= f.semantic_errors *f.object.errors.keys%>
