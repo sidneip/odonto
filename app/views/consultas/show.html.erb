@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @consulta.data %>
+</p>
+
+<p>
+  <strong>Hora inicio:</strong>
+  <%= @consulta.hora_inicio %>
+</p>
+
+<p>
+  <strong>Hora fim:</strong>
+  <%= @consulta.hora_fim %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @consulta.tipo %>
+</p>
+
+<p>
+  <strong>Procedimento:</strong>
+  <%= @consulta.procedimento_id %>
+</p>
+
+<p>
+  <strong>Paciente:</strong>
+  <%= @consulta.paciente_id %>
+</p>
+
+<p>
+  <strong>Convenio:</strong>
+  <%= @consulta.convenio_id %>
+</p>
+
+<p>
+  <strong>Dentista:</strong>
+  <%= @consulta.dentista_id %>
+</p>
+
+<p>
+  <strong>Observacao:</strong>
+  <%= @consulta.observacao %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @consulta.status %>
+</p>
+
+<%= link_to 'Edit', edit_consulta_path(@consulta) %> |
+<%= link_to 'Back', consultas_path %>

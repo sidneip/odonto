@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130729033448) do
+ActiveRecord::Schema.define(version: 20130730034438) do
+
+  create_table "consultas", force: true do |t|
+    t.date     "data"
+    t.string   "hora_inicio"
+    t.string   "hora_fim"
+    t.string   "tipo"
+    t.integer  "procedimento_id"
+    t.integer  "paciente_id"
+    t.integer  "convenio_id"
+    t.integer  "dentista_id"
+    t.text     "observacao"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "convenios", force: true do |t|
     t.integer  "codigo_convenio"
@@ -56,7 +71,7 @@ ActiveRecord::Schema.define(version: 20130729033448) do
     t.datetime "updated_at"
   end
 
-  create_table "pacientes", id: false, force: true do |t|
+  create_table "pacientes", force: true do |t|
     t.string   "nome"
     t.string   "sexo"
     t.date     "data_nascimento"
@@ -72,7 +87,6 @@ ActiveRecord::Schema.define(version: 20130729033448) do
     t.string   "complemento"
     t.integer  "telefone"
     t.integer  "celular"
-    t.integer  "id"
     t.string   "email"
     t.integer  "identidade_rg"
     t.string   "orgao_rg"

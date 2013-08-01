@@ -1,0 +1,45 @@
+<h1>Listing consultas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Hora inicio</th>
+      <th>Hora fim</th>
+      <th>Tipo</th>
+      <th>Procedimento</th>
+      <th>Paciente</th>
+      <th>Convenio</th>
+      <th>Dentista</th>
+      <th>Observacao</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consultas.each do |consulta| %>
+      <tr>
+        <td><%= consulta.data %></td>
+        <td><%= consulta.hora_inicio %></td>
+        <td><%= consulta.hora_fim %></td>
+        <td><%= consulta.tipo %></td>
+        <td><%= consulta.procedimento_id %></td>
+        <td><%= consulta.paciente_id %></td>
+        <td><%= consulta.convenio_id %></td>
+        <td><%= consulta.dentista_id %></td>
+        <td><%= consulta.observacao %></td>
+        <td><%= consulta.status %></td>
+        <td><%= link_to 'Show', consulta %></td>
+        <td><%= link_to 'Edit', edit_consulta_path(consulta) %></td>
+        <td><%= link_to 'Destroy', consulta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consulta', new_consulta_path %>

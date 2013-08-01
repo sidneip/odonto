@@ -1,10 +1,13 @@
 class PacientesController < ApplicationController
   before_action :set_paciente, only: [:show, :edit, :update, :destroy]
-
   # GET /pacientes
   # GET /pacientes.json
   def index
     @pacientes = Paciente.all
+    respond_to do |format|
+        format.xml {render :xml => @pacientes}
+        format.json {render :json => @pacientes}
+    end
   end
 
   # GET /pacientes/1

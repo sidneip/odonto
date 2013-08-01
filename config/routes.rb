@@ -1,4 +1,6 @@
 Odonto::Application.routes.draw do
+  resources :consultas
+
   root to: 'static#index'
 
   resources :dentistas

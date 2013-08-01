@@ -1,0 +1,82 @@
+<%= form_for(@consulta) do |f| %>
+  <% if @consulta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consulta.errors.count, "error") %> prohibited this consulta from being saved:</h2>
+
+      <ul>
+      <% @consulta.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :data %><br>
+    <%= f.date_select :data %>
+  </div>
+  <div class="field">
+    <%= f.label :hora_inicio %><br>
+    <%= f.text_field :hora_inicio %>
+  </div>
+  <div class="field">
+    <%= f.label :hora_fim %><br>
+    <%= f.text_field :hora_fim %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo %><br>
+    <%= f.text_field :tipo %>
+  </div>
+  <div class="field">
+    <%= f.label :procedimento_id %><br>
+    <%= f.number_field :procedimento_id %>
+  </div>
+  <div class="field">
+    <%= f.label :paciente_id %><br>
+    <%= f.number_field :paciente_id %>
+  </div>
+  <div class="field">
+    <%= f.label :convenio_id %><br>
+    <%= f.number_field :convenio_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dentista_id %><br>
+    <%= f.number_field :dentista_id %>
+  </div>
+  <div class="field">
+    <%= f.label :observacao %><br>
+    <%= f.text_area :observacao %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script>
+  $(function() {
+      $.ajax({
+      url: "../pacientes.xml",
+      dataType: "xml",
+      success: function( xmlResponse ) {
+        var data = $( "paciente", xmlResponse ).map(function() {
+          return {
+            value: $( "nome", this ).text() + ", " +
+              ( $.trim( $( "nome", this ).text() ) || "(unknown country)" ),
+            id: $( "id", this ).text()
+          };
+        }).get();
+        $( "#consulta_paciente_id" ).autocomplete({
+          source: data,
+          minLength: 0,
+          select: function(event, ui) {
+                $('#consulta_paciente_id').val(ui.item.nome);
+                return false;
+            },
+        });
+      }
+    });
+  });
+  </script>
