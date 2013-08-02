@@ -1,0 +1,31 @@
+<%= javascript_include_tag "fullcalendar.min" %>
+<style>
+  #calendar {
+    width: 900px;
+    margin: 0 auto;
+    }
+</style>
+<div id = 'calendar'> </div>  
+<script>
+$(document).ready(function() {
+  
+    $('#calendar').fullCalendar({
+    
+      editable: true,
+      
+      events: "/consultas.json",
+      
+      eventDrop: function(event, delta) {
+        alert(event.title + ' was moved ' + delta + ' days\n' +
+          '(should probably update your database)');
+      },
+      
+      loading: function(bool) {
+        if (bool) $('#loading').show();
+        else $('#loading').hide();
+      }
+      
+    });
+    
+  });
+</script>

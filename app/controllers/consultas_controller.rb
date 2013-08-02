@@ -6,6 +6,11 @@ class ConsultasController < ApplicationController
   # GET /consultas.json
   def index
     @consultas = Consulta.all.reverse
+    respond_to do |format|
+        format.xml {render :xml => @consultas}
+        format.json {render :json => @consultas}
+        format.html {render :html => @consultas}
+    end
   end
 
   # GET /consultas/1
@@ -62,9 +67,17 @@ class ConsultasController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def calendario
+    @consultas = Consulta.all.reverse
+    respond_to do |format|
+      format.xml {render :xml => @consultas}
+      format.json {render :json => @consultas}
+      format.html {render :html => @consultas}
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_consulta
       @consulta = Consulta.find(params[:id])
     end

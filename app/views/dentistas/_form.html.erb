@@ -1,4 +1,17 @@
 <%= form_for @dentista, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @dentista.errors.any? %>
+    <h6><%= pluralize(@dentista.errors.count, "Erros encontrado(s) no formulario") %> </h6>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">x</a>
+      <% @dentista.errors.full_messages.each do |msg| %>
+        <%= msg %>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+  <% if action_name.include?('edit') %>
+    <h5> Preencha os campos que deseja editar </h3>
+  <%end%>
   <div class="control-group">
     <%= f.label :nome, :class => 'control-label' %>
     <div class="controls">
@@ -20,11 +33,11 @@
   <div class="control-group">
     <%= f.label :sexo, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :sexo, :class => 'text_field' %>
+      <%= f.select(:sexo,['Masculino','Feminino'], :class => 'text_field') %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :data_nasc, :class => 'control-label' %>
+    <%= f.label :data_de_nascismento, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :data_nasc, :class => 'text_field' %>
     </div>
@@ -32,7 +45,7 @@
   <div class="control-group">
     <%= f.label :estado_civil, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :estado_civil, :class => 'text_field' %>
+      <%= f.select(:estado_civil, ['Solteiro(a)','Casado(a)','Divorciado(a)'], :class => 'text_field') %>
     </div>
   </div>
   <div class="control-group">
@@ -50,7 +63,7 @@
   <div class="control-group">
     <%= f.label :numero, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :numero, :class => 'text_field' %>
+      <%= f.text_field :numero, :class => 'input-small' %>
     </div>
   </div>
   <div class="control-group">
@@ -68,7 +81,7 @@
   <div class="control-group">
     <%= f.label :uf, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :uf, :class => 'text_field' %>
+      <%= f.select(:uf, ["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"], :class => 'input-small') %>
     </div>
   </div>
   <div class="control-group">
@@ -90,25 +103,25 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :identidade_rg, :class => 'control-label' %>
+    <%= f.label :RG, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :identidade_rg, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :orgao_rg, :class => 'control-label' %>
+    <%= f.label :Orgão_emissor_rg, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :orgao_rg, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :cpf, :class => 'control-label' %>
+    <%= f.label :CPF, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :cpf, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :cro, :class => 'control-label' %>
+    <%= f.label :CRO, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :cro, :class => 'text_field' %>
     </div>
@@ -120,3 +133,25 @@
                 dentistas_path, :class => 'btn' %>
   </div>
 <% end %>
+<script>
+jQuery(function($){
+         $("#dentista_data_nasc").mask("99/99/9999");
+         $("#dentista_telefone").mask("(99)9999-999");
+         $("#dentista_cpf").mask("999.999.999-99");
+         $('#dentista_identidade_rg').mask('99.999.999-9');
+         $('#dentista_cep').mask('99999-999');
+         $('#dentista_celular').mask("(99) 9999-9999?9").ready(function(event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace(/\D/g, '');
+            element = $(target);
+            element.unmask();
+            if(phone.length > 10) {
+                element.mask("(99) 99999-999?9");
+            } else {
+                element.mask("(99) 9999-9999?9");
+            }
+});
+  });
+</script>
+<%= javascript_include_tag "mask" %>

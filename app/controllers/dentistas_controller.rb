@@ -8,6 +8,7 @@ class DentistasController < ApplicationController
     respond_to do |format|
         format.xml {render :xml => @dentistas}
         format.json {render :json => @dentistas}
+        format.html {render :html => @dentistas}
     end
   end
 
