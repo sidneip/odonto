@@ -5,14 +5,14 @@ en:
   helpers:
     actions: "Actions"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
+      back: "Voltar"
+      cancel: "Cancelar"
+      confirm: "Confirmar?"
       destroy: "Delete"
       new: "New"
-      edit: "Edit"
+      edit: "Editar"
     titles:
-      edit: "Edit"
-      save: "Save"
+      edit: "Editar"
+      save: "Salvar"
       new: "New"
-      delete: "Delete"
+      delete: "Excluir"

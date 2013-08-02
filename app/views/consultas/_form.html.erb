@@ -50,10 +50,12 @@
   </div>
   <div class="field">
     <%= f.label :status %>
-    <%= f.select(:status, ['Marcada', 'Cancelada', 'Concluida']) %>
+    <%= f.select(:status, ['Marcado', 'Confirmado', 'Aguardando', 'Em Andamento', 'Atendido', 'Cancelado', 'Desmarcado']) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+<div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                consultas_path, :class => 'btn' %>
   </div>
 <% end %>
 <script>
