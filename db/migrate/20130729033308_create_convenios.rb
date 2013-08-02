@@ -19,4 +19,7 @@ class CreateConvenios < ActiveRecord::Migration
       t.timestamps
     end
   end
+  def down
+    drop_table :convenios
+  end
 end

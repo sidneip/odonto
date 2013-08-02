@@ -9,4 +9,7 @@ class CreateProcedimentos < ActiveRecord::Migration
       t.timestamps
     end
   end
+  def down
+  	drop_table :procedimentos
+  end
 end

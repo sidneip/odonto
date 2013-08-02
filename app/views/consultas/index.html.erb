@@ -31,7 +31,7 @@
         <td><%= consulta.procedimento.try(:nome) %></td>
         <td><%= consulta.paciente.try(:nome) %></td>
         <td><%= consulta.convenio_id %></td>
-        <td><%= consulta.dentista_id %></td>
+        <td><%= consulta.dentista.try(:nome) %></td>
         <td><%= consulta.observacao %></td>
         <td><%= consulta.status %></td>
         <td><%= formata_data(consulta.created_at) %></td>

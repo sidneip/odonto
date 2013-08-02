@@ -15,4 +15,7 @@ class CreateConsultas < ActiveRecord::Migration
       t.timestamps
     end
   end
+  def down
+    drop_table :consultas
+  end
 end

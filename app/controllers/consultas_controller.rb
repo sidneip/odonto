@@ -6,6 +6,7 @@ class ConsultasController < ApplicationController
   # GET /consultas.json
   def index
     @consultas = Consulta.all.reverse
+
     respond_to do |format|
         format.xml {render :xml => @consultas}
         format.json {render :json => @consultas}

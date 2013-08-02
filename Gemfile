@@ -6,7 +6,7 @@ gem "therubyracer"
 gem "less-rails" 
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
-gem 'rails3-jquery-autocomplete'
+gem 'kaminari'
 
 group :development do
   gem "better_errors"
