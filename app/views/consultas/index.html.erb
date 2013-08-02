@@ -28,7 +28,7 @@
         <td><%= consulta.hora_inicio %></td>
         <td><%= consulta.hora_fim %></td>
         <td><%= consulta.tipo %></td>
-        <td><%= consulta.procedimento_id %></td>
+        <td><%= consulta.procedimento.try(:nome) %></td>
         <td><%= consulta.paciente.try(:nome) %></td>
         <td><%= consulta.convenio_id %></td>
         <td><%= consulta.dentista_id %></td>
