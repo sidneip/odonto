@@ -5,6 +5,10 @@ class DentistasController < ApplicationController
   # GET /dentistas.json
   def index
     @dentistas = Dentista.all
+    respond_to do |format|
+        format.xml {render :xml => @dentistas}
+        format.json {render :json => @dentistas}
+    end
   end
 
   # GET /dentistas/1

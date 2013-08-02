@@ -1,26 +1,16 @@
 class ConsultasController < ApplicationController
+  include ApplicationHelper
   before_action :set_consulta, only: [:show, :edit, :update, :destroy]
 
   # GET /consultas
   # GET /consultas.json
   def index
-    @consultas = Consulta.all
+    @consultas = Consulta.all.reverse
   end
 
   # GET /consultas/1
   # GET /consultas/1.json
   def show
-  end
-
-  def completar_paciente
-    if params[:term]
-      like= "%".concat(params[:term].concat("%"))
-      pacientes = Paciente.where("nome like ?", like)
-    else
-      users = User.all
-    end
-    list = pacientes.map {|u| Hash[ id: u.id, label: u.nome, nome: u.nome]}
-    render json: list
   end
 
   # GET /consultas/new
@@ -30,6 +20,7 @@ class ConsultasController < ApplicationController
 
   # GET /consultas/1/edit
   def edit
+    @consulta = Consulta.find(params[:id])
   end
 
   # POST /consultas

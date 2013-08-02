@@ -5,6 +5,11 @@ class ConveniosController < ApplicationController
   # GET /convenios.json
   def index
     @convenios = Convenio.all
+    respond_to do |format|
+        format.html
+        format.xml {render :xml => @convenios}
+        format.json {render :json => @convenios}
+    end
   end
 
   # GET /convenios/1

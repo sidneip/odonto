@@ -1,57 +1,61 @@
 <%= form_for(@consulta) do |f| %>
   <% if @consulta.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@consulta.errors.count, "error") %> prohibited this consulta from being saved:</h2>
+      <h6><%= pluralize(@consulta.errors.count, "Erros encontrado(s) no formulario") %> </h6>
 
-      <ul>
+      <div class="alert alert-error">
+        <a class="close" data-dismiss="alert">x</a>
       <% @consulta.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <%= msg %>
+        <br>
       <% end %>
-      </ul>
     </div>
   <% end %>
-
+  <% if action_name.include?('edit') %>
+    <h5> Preencha os campos que deseja editar </h3>
+  <%end%>
   <div class="field">
-    <%= f.label :data %><br>
-    <%= f.date_select :data %>
+    <%= f.label :paciente_id %>
+    <%= text_field_tag :paciente_nome %>
+    <%= f.hidden_field :paciente_id %>
   </div>
   <div class="field">
-    <%= f.label :hora_inicio %><br>
-    <%= f.text_field :hora_inicio %>
+    <%= f.label :data %>
+    <%= f.text_field :data %>
   </div>
   <div class="field">
-    <%= f.label :hora_fim %><br>
+    <%= f.label :hora_inicio %>
+    <%= f.text_field :hora_inicio%>
+  </div>
+  <div class="field">
+    <%= f.label :hora_fim %>
     <%= f.text_field :hora_fim %>
   </div>
   <div class="field">
-    <%= f.label :tipo %><br>
-    <%= f.text_field :tipo %>
+    <%= f.label :tipo %>
+    <%= f.select(:tipo, ['Consulta', 'Orçamento']) %>
   </div>
   <div class="field">
-    <%= f.label :procedimento_id %><br>
-    <%= f.number_field :procedimento_id %>
+    <%= f.label :procedimento_id %>
+    <%= text_field_tag :procedimento_nome %>
+    <%= f.hidden_field :procedimento_id %>
   </div>
   <div class="field">
-    <%= f.label :paciente_id %><br>
-    <%= text_field_tag :paciente_nome %>
-    <%= f.hidden_field :paciente_id %>
-
+    <%= f.label :convenio_id %>
+    <%= text_field_tag :convenio_nome %>
+    <%= f.hidden_field :convenio_id %>
   </div>
   <div class="field">
-    <%= f.label :convenio_id %><br>
-    <%= f.number_field :convenio_id %>
+    <%= f.label :dentista_id %>
+    <%= text_field_tag :dentista_nome %>
+    <%= f.hidden_field :dentista_id %>
   </div>
   <div class="field">
-    <%= f.label :dentista_id %><br>
-    <%= f.number_field :dentista_id %>
-  </div>
-  <div class="field">
-    <%= f.label :observacao %><br>
+    <%= f.label :observacao %>
     <%= f.text_area :observacao %>
   </div>
   <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.label :status %>
+    <%= f.select(:status, ['Marcada', 'Cancelada', 'Concluida']) %>
   </div>
   <div class="actions">
     <%= f.submit %>
@@ -59,13 +63,16 @@
 <% end %>
 <script>
   $(function() {
+  $("#consulta_data").datepicker();
+  $("#consulta_hora_inicio").mask('99:99');
+  $("#consulta_hora_fim").mask('99:99');
       $.ajax({
       url: "../pacientes.xml",
       dataType: "xml",
       success: function( xmlResponse ) {
         var data = $( "paciente", xmlResponse ).map(function() {
           return {
-            value: $( "nome", this ).text() || "(unknown country)" ,
+            value: $( "nome", this ).text(),
             id: $( "id", this ).text()
           };
         }).get();
@@ -80,4 +87,65 @@
       }
     });
   });
+  $.ajax({
+      url: "../procedimentos.xml",
+      dataType: "xml",
+      success: function( xmlResponse ) {
+        var data = $( "procedimento", xmlResponse ).map(function() {
+          return {
+            value: $( "nome", this ).text(),
+            id: $( "id", this ).text()
+          };
+        }).get();
+        $( "#procedimento_nome" ).autocomplete({
+          source: data,
+          minLength: 0,
+          select: function(event, ui) {
+                $('#procedimento_nome').val(ui.item.nome);
+                $('#consulta_procedimento_id').val(ui.item.id);
+            },
+        });
+      }
+    });
+  $.ajax({
+      url: "../convenios.xml",
+      dataType: "xml",
+      success: function( xmlResponse ) {
+        var data = $( "convenio", xmlResponse ).map(function() {
+          return {
+            value: $( "nome-fantasia", this ).text(),
+            id: $( "id", this ).text()
+          };
+        }).get();
+        $( "#convenio_nome" ).autocomplete({
+          source: data,
+          minLength: 0,
+          select: function(event, ui) {
+                $('#convenio_nome').val(ui.item.nome);
+                $('#consulta_convenio_id').val(ui.item.id);
+            },
+        });
+      }
+    });
+    $.ajax({
+      url: "../dentistas.xml",
+      dataType: "xml",
+      success: function( xmlResponse ) {
+        var data = $( "dentista", xmlResponse ).map(function() {
+          return {
+            value: $( "nome", this ).text(),
+            id: $( "id", this ).text()
+          };
+        }).get();
+        $( "#dentista_nome" ).autocomplete({
+          source: data,
+          minLength: 0,
+          select: function(event, ui) {
+                $('#dentista_nome').val(ui.item.nome);
+                $('#consulta_dentista_id').val(ui.item.id);
+            },
+        });
+      }
+    });
   </script>
+  <%= javascript_include_tag "mask" %>

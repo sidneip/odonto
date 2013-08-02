@@ -1,6 +1,6 @@
 <%- model_class = Consulta -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>Listar Consultas</h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -16,7 +16,7 @@
       <th><%= model_class.human_attribute_name(:dentista_id) %></th>
       <th><%= model_class.human_attribute_name(:observacao) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Criada</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
     <% @consultas.each do |consulta| %>
       <tr>
         <td><%= link_to consulta.id, consulta_path(consulta) %></td>
-        <td><%= consulta.data %></td>
+        <td><%= formata_data(consulta.data) %></td>
         <td><%= consulta.hora_inicio %></td>
         <td><%= consulta.hora_fim %></td>
         <td><%= consulta.tipo %></td>
@@ -34,7 +34,7 @@
         <td><%= consulta.dentista_id %></td>
         <td><%= consulta.observacao %></td>
         <td><%= consulta.status %></td>
-        <td><%=l consulta.created_at %></td>
+        <td><%= formata_data(consulta.created_at) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_consulta_path(consulta), :class => 'btn btn-mini' %>

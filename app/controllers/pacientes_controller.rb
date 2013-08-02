@@ -5,6 +5,7 @@ class PacientesController < ApplicationController
   def index
     @pacientes = Paciente.all
     respond_to do |format|
+        format.html 
         format.xml {render :xml => @pacientes}
         format.json {render :json => @pacientes}
     end

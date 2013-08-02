@@ -6,6 +6,10 @@ class ProcedimentosController < ApplicationController
   # GET /procedimentos.json
   def index
     @procedimentos = Procedimento.all
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @procedimentos}
+    end
   end
 
   # GET /procedimentos/1

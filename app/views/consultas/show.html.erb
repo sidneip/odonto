@@ -1,28 +1,28 @@
 <%- model_class = Consulta -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1>Consulta <%= @consulta.id %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:data) %>:</strong></dt>
-  <dd><%= @consulta.data %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:hora_inicio) %>:</strong></dt>
+  <dt><strong>Data da Consulta:</strong></dt>
+  <dd><%= formata_data(@consulta.data) %></dd>
+  <dt><strong>Hora Inicio:</strong></dt>
   <dd><%= @consulta.hora_inicio %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:hora_fim) %>:</strong></dt>
+  <dt><strong>Hora Fim:</strong></dt>
   <dd><%= @consulta.hora_fim %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:tipo) %>:</strong></dt>
+  <dt><strong>Tipo da Consulta :</strong></dt>
   <dd><%= @consulta.tipo %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:procedimento_id) %>:</strong></dt>
-  <dd><%= @consulta.procedimento_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:paciente_id) %>:</strong></dt>
-  <dd><%= @consulta.paciente_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:convenio_id) %>:</strong></dt>
-  <dd><%= @consulta.convenio_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:dentista_id) %>:</strong></dt>
-  <dd><%= @consulta.dentista_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:observacao) %>:</strong></dt>
+  <dt><strong>Procedimento:</strong></dt>
+  <dd><%= @consulta.procedimento.nome %></dd>
+  <dt><strong>Paciente:</strong></dt>
+  <dd><%= @consulta.paciente.nome %></dd>
+  <dt><strong>Convenio:</strong></dt>
+  <dd><%= @consulta.convenio.nome_fantasia %></dd>
+  <dt><strong>Dentista:</strong></dt>
+  <dd><%= @consulta.dentista.try(:nome) %></dd>
+  <dt><strong>Observações:</strong></dt>
   <dd><%= @consulta.observacao %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dt><strong>Status:</strong></dt>
   <dd><%= @consulta.status %></dd>
 </dl>
 
