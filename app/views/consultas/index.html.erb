@@ -2,6 +2,7 @@
 <div class="page-header">
   <h1>Listar Consultas</h1>
 </div>
+<%= paginate @consultas, :theme => 'twitter-bootstrap' %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -52,3 +53,4 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_consulta_path,
             :class => 'btn btn-primary' %>
+<%= link_to 'Calendario de Consultas', calendario_consultas_path, :class => 'btn btn-primary' %>

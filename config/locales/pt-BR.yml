@@ -216,3 +216,10 @@ pt-BR:
   activerecord:
     errors:
       <<: *errors
+  views:
+    pagination:
+      last: "&lt; Anterior"
+      next: "Proximo &gt;"
+      truncate: "..."
+      first: "Primeiro"
+      previous: "Anterior"
