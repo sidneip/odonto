@@ -8,7 +8,41 @@
 <div id = 'calendar'> </div>  
 <script>
 $(document).ready(function() {
-    $('#calendar').fullCalendar({
+$('#calendar').fullCalendar({
+monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+titleFormat: {
+month:'MMMM yyyy',
+week:"d[ MMMM][ yyyy]{ - d MMMM yyyy}",
+day:'dddd, d MMMM yyyy'
+},
+columnFormat: {
+month:'ddd',
+week:'ddd d',
+day:''
+},
+axisFormat: 'H:mm',
+timeFormat: {'': 'H:mm',
+agenda: 'H:mm{ - H:mm}'
+},
+buttonText: {
+prev: "&nbsp;&#9668;&nbsp;",
+next:"&nbsp;&#9658;&nbsp;",
+prevYear: "&nbsp;&lt;&lt;&nbsp;",
+nextYear: "&nbsp;&gt;&gt;&nbsp;",
+today: "Hoje",
+month: "Mês",
+week: "Semana",
+day: "Dia"
+},
+    defaultView: 'agendaDay',  
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
     events: function(start, end, callback) {
         $.ajax({
             url: '../consultas.xml',
@@ -17,8 +51,11 @@ $(document).ready(function() {
                 var events = [];
                 $(doc).find('consulta').each(function() {
                     events.push({
-                         title: $(this).find("id").text(),
-                         start: $(this).find("data").text(),
+                         title: $(this).find("hora-fim").text() + " " +$(this).find("nome").text() + " Ver consulta",
+                         start: $(this).find("data").text() + "T" + $(this).find("hora-inicio").text() + ":00",
+                         end: $(this).find("data").text() + "T" + $(this).find("hora-fim").text() + ":00",
+                         url: $(this).find("id").first().text(),
+                         allDay: false
                     });
                 });
                 callback(events);

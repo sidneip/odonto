@@ -8,7 +8,7 @@ class ConsultasController < ApplicationController
     @consultas = Consulta.all.reverse
 
     respond_to do |format|
-        format.xml {render :xml => @consultas}
+        format.xml {render :xml => @consultas.to_xml(:include => :paciente) }
         format.json {render :json => @consultas}
         format.html {render :html => @consultas}
     end
