@@ -8,24 +8,24 @@
 <div id = 'calendar'> </div>  
 <script>
 $(document).ready(function() {
-  
     $('#calendar').fullCalendar({
-    
-      editable: true,
-      
-      events: "/consultas.json",
-      
-      eventDrop: function(event, delta) {
-        alert(event.title + ' was moved ' + delta + ' days\n' +
-          '(should probably update your database)');
-      },
-      
-      loading: function(bool) {
-        if (bool) $('#loading').show();
-        else $('#loading').hide();
-      }
-      
-    });
+    events: function(start, end, callback) {
+        $.ajax({
+            url: '../consultas.xml',
+            dataType: 'xml',
+            success: function(doc) {
+                var events = [];
+                $(doc).find('consulta').each(function() {
+                    events.push({
+                         title: $(this).find("id").text(),
+                         start: $(this).find("data").text(),
+                    });
+                });
+                callback(events);
+            }
+        });
+    }
+});
     
   });
 </script>
