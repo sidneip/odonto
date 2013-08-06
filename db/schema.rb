@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130730033001) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "consultas", force: true do |t|
     t.date     "data"
     t.string   "hora_inicio"
