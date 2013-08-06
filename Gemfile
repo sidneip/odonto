@@ -7,6 +7,7 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 group :development do
   gem "better_errors"

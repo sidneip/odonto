@@ -6,3 +6,8 @@ en:
     links:
     back: "Voltar"
     destroy: "Delete"
+  views:
+    pagination:
+      previous: "&lt; Voltar"
+      next: "Avançar &gt;"
+      truncate: "..."
