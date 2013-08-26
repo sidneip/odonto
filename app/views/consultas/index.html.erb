@@ -1,23 +1,27 @@
 <%- model_class = Consulta -%>
 <div class="page-header">
   <h1>Listar Consultas</h1>
+
 </div>
-<%= paginate @consultas, :theme => 'twitter-bootstrap' %>
+
+<form class="form-search pull-right">
+<div class="input-append">
+<input type="text" id="search" placeholder="Nome do paciente" name="search" class="span2 search-query" autocomplete="off">
+<button type="submit" class="btn">Buscar Consulta</button>
+</div>
+</form>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:data) %></th>
-      <th><%= model_class.human_attribute_name(:hora_inicio) %></th>
-      <th><%= model_class.human_attribute_name(:hora_fim) %></th>
+      <th>Horario </th>
       <th><%= model_class.human_attribute_name(:tipo) %></th>
       <th><%= model_class.human_attribute_name(:procedimento_id) %></th>
       <th><%= model_class.human_attribute_name(:paciente_id) %></th>
       <th><%= model_class.human_attribute_name(:convenio_id) %></th>
       <th><%= model_class.human_attribute_name(:dentista_id) %></th>
-      <th><%= model_class.human_attribute_name(:observacao) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
-      <th>Criada</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -26,16 +30,13 @@
       <tr>
         <td><%= link_to consulta.id, consulta_path(consulta) %></td>
         <td><%= formata_data(consulta.data) %></td>
-        <td><%= consulta.hora_inicio %></td>
-        <td><%= consulta.hora_fim %></td>
+        <td><%= "#{consulta.hora_inicio}:#{consulta.hora_fim}" %></td>
         <td><%= consulta.tipo %></td>
         <td><%= consulta.procedimento.try(:nome) %></td>
         <td><%= consulta.paciente.try(:nome) %></td>
-        <td><%= consulta.convenio_id %></td>
+        <td><%= consulta.try(:convenio).try(:nome_fantasia) %></td>
         <td><%= consulta.dentista.try(:nome) %></td>
-        <td><%= consulta.observacao %></td>
         <td><%= consulta.status %></td>
-        <td><%= formata_data(consulta.created_at) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_consulta_path(consulta), :class => 'btn btn-mini' %>
@@ -44,13 +45,39 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Confirmar',
+                      confirmar_consulta_consultas_path(:id => consulta.id), :class => 'btn btn-mini btn-primary' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @consultas, :theme => 'twitter-bootstrap' %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_consulta_path,
             :class => 'btn btn-primary' %>
 <%= link_to 'Calendario de Consultas', calendario_consultas_path, :class => 'btn btn-primary' %>
+
+<script>
+jQuery(function($){
+$.ajax({
+      url: consultas_path(:format => :xml),
+      dataType: "xml",
+      success: function( xmlResponse ) {
+        var data = $( "paciente", xmlResponse ).map(function() {
+          return {
+            value: $( "nome", this ).text(),
+          };
+        }).get();
+        $( "#search" ).autocomplete({
+          source: data,
+          minLength: 2,
+          select: function(event, ui) {
+                $('#search').val(ui.item.nome);
+            },
+        });
+      }
+    });
+  });
+</script>
