@@ -16,12 +16,9 @@
     <%= f.text_field :data %>
   </div>
   <div class="field">
-    <%= f.label :hora_inicio %>
-    <%= f.text_field :hora_inicio%>
-  </div>
-  <div class="field">
-    <%= f.label :hora_fim %>
-    <%= f.text_field :hora_fim %>
+    <%= f.label :'hora inicio/fim' %>
+    <%= f.text_field :hora_inicio, :class=>"input-mini"%>
+    <%= f.text_field :hora_fim, :class=>"input-mini"%>
   </div>
   <div class="field">
     <%= f.label :tipo %>
