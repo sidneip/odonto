@@ -1,4 +1,8 @@
 Odonto::Application.routes.draw do
+  resources :descritivo_faturas
+
+  resources :faturas
+
   resources :consultas do
     get 'calendario', :on => :collection
     get 'confirmar_consulta',  :on => :collection

@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730033001) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20130827035504) do
 
   create_table "consultas", force: true do |t|
     t.date     "data"
@@ -70,6 +67,23 @@ ActiveRecord::Schema.define(version: 20130730033001) do
     t.string   "orgao_rg"
     t.string   "cpf"
     t.integer  "cro"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "descritivo_faturas", force: true do |t|
+    t.integer  "fatura_id"
+    t.string   "descricao"
+    t.float    "valor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "faturas", force: true do |t|
+    t.integer  "consulta_id"
+    t.string   "descricao"
+    t.float    "desconto"
+    t.date     "vencimento"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

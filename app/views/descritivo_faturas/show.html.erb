@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fatura:</strong>
+  <%= @descritivo_fatura.fatura_id %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @descritivo_fatura.descricao %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @descritivo_fatura.valor %>
+</p>
+
+<%= link_to 'Edit', edit_descritivo_fatura_path(@descritivo_fatura) %> |
+<%= link_to 'Back', descritivo_faturas_path %>

@@ -1,0 +1,31 @@
+<h1>Listing descritivo_faturas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fatura</th>
+      <th>Descricao</th>
+      <th>Valor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @descritivo_faturas.each do |descritivo_fatura| %>
+      <tr>
+        <td><%= descritivo_fatura.fatura_id %></td>
+        <td><%= descritivo_fatura.descricao %></td>
+        <td><%= descritivo_fatura.valor %></td>
+        <td><%= link_to 'Show', descritivo_fatura %></td>
+        <td><%= link_to 'Edit', edit_descritivo_fatura_path(descritivo_fatura) %></td>
+        <td><%= link_to 'Destroy', descritivo_fatura, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Descritivo fatura', new_descritivo_fatura_path %>

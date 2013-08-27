@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Consulta:</strong>
+  <%= @fatura.consulta_id %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @fatura.descricao %>
+</p>
+
+<p>
+  <strong>Desconto:</strong>
+  <%= @fatura.desconto %>
+</p>
+
+<p>
+  <strong>Vencimento:</strong>
+  <%= @fatura.vencimento %>
+</p>
+
+<%= link_to 'Edit', edit_fatura_path(@fatura) %> |
+<%= link_to 'Back', faturas_path %>

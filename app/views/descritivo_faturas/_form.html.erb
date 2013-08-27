@@ -1,0 +1,29 @@
+<%= form_for(@descritivo_fatura) do |f| %>
+  <% if @descritivo_fatura.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@descritivo_fatura.errors.count, "error") %> prohibited this descritivo_fatura from being saved:</h2>
+
+      <ul>
+      <% @descritivo_fatura.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fatura_id %><br>
+    <%= f.text_field :fatura_id %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :valor %><br>
+    <%= f.text_field :valor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
