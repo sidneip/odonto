@@ -37,9 +37,11 @@ class ConsultasController < ApplicationController
   # POST /consultas.json
   def create
     @consulta = Consulta.new(consulta_params)
-
     respond_to do |format|
       if @consulta.save
+        if @consulta.fatura.nil?
+          @fatura   = Fatura.create!(:consulta_id => @consulta.id)
+        end
         format.html { redirect_to @consulta, notice: 'Consulta was successfully created.' }
         format.json { render action: 'show', status: :created, location: @consulta }
       else
