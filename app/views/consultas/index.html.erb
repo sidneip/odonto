@@ -80,7 +80,7 @@
 <script>
 jQuery(function($){
 $.ajax({
-      url: consultas_path(:format => :xml),
+      url: "<%= pacientes_path(:format => :xml) %>",
       dataType: "xml",
       success: function( xmlResponse ) {
         var data = $( "paciente", xmlResponse ).map(function() {
