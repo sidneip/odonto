@@ -16,7 +16,9 @@
     </tr>
   </thead>
   <tbody>
+    <% @receita_total=0 %>
     <% @faturas.each do |fatura| %>
+    <% @receita_total = @receita_total + fatura.total_fatura%>
       <tr>
         <td><%= link_to "Visualizar Fatura #{fatura.id}", fatura_path(fatura) %></td>
         <td><%= link_to "Visualizar Consulta", consulta_path(fatura.consulta) %></td>
@@ -38,8 +40,10 @@
       </tr>
     <% end %>
   </tbody>
+<td colspan="6"></td>
+<td><b>Receita: </b></td>
+<td><%= @receita_total %> </td>
 </table>
-
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_fatura_path,
             :class => 'btn btn-primary' %>
