@@ -10,6 +10,7 @@ class ConsultasController < ApplicationController
     else
         @consultas = Consulta.order("created_at DESC").page(params[:page]).per(8)
     end
+    @consulta = Consulta.new
     @consultasxml = Consulta.all
     respond_to do |format|
         format.xml {render :xml => @consultasxml.to_xml(:include => :paciente) }
