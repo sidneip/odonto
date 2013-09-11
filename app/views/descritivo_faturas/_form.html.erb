@@ -1,5 +1,9 @@
 <%= simple_form_for @descritivo_fatura, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :fatura_id, :input_html => {:value => params[:fatura_id]} %>
+  <%if params[:fatura_id] %>
+    <%= f.input :fatura_id, :input_html => {:value => params[:fatura_id], :readonly => "true"} %>
+  <%else%>
+    <%= f.input :fatura_id %>
+  <%end%>
   <%= f.input :descricao %>
   <%= f.input :valor %>
   <div class="form-actions">

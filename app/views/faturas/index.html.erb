@@ -26,14 +26,14 @@
         <td>R$<%= fatura.try(:total_fatura) %></td>
         <td><%= fatura.created_at.strftime("%m/%d/%Y") %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_fatura_path(fatura), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       fatura_path(fatura),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
-          <%= link_to "Adicionar Procedimento", new_descritivo_fatura_path(:fatura_id => fatura.id), :class => 'btn-primary btn-mini'          %>
+          <%= link_to "Adicionar Procedimento", new_descritivo_fatura_path(:fatura_id => fatura.id), :class => 'btn btn-mini'          %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_fatura_path(fatura), :class => 'btn btn-mini' %>
         </td>
       </tr>
     <% end %>
