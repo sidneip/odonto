@@ -1,33 +1,11 @@
-<%= form_for(@fatura) do |f| %>
-  <% if @fatura.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@fatura.errors.count, "error") %> prohibited this fatura from being saved:</h2>
-
-      <ul>
-      <% @fatura.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :consulta_id %><br>
-    <%= f.number_field :consulta_id %>
-  </div>
-  <div class="field">
-    <%= f.label :descricao %><br>
-    <%= f.text_field :descricao %>
-  </div>
-  <div class="field">
-    <%= f.label :desconto %><br>
-    <%= f.text_field :desconto %>
-  </div>
-  <div class="field">
-    <%= f.label :vencimento %><br>
-    <%= f.date_select :vencimento %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<%= simple_form_for @fatura, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :consulta_id %>
+  <%= f.input :descricao %>
+  <%= f.input :desconto %>
+  <%= f.input :vencimento %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                faturas_path, :class => 'btn' %>
   </div>
 <% end %>

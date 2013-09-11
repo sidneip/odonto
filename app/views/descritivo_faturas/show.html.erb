@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = DescritivoFatura -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Fatura:</strong>
-  <%= @descritivo_fatura.fatura_id %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:fatura_id) %>:</strong></dt>
+  <dd><%= @descritivo_fatura.fatura_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
+  <dd><%= @descritivo_fatura.descricao %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:valor) %>:</strong></dt>
+  <dd><%= @descritivo_fatura.valor %></dd>
+</dl>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @descritivo_fatura.descricao %>
-</p>
-
-<p>
-  <strong>Valor:</strong>
-  <%= @descritivo_fatura.valor %>
-</p>
-
-<%= link_to 'Edit', edit_descritivo_fatura_path(@descritivo_fatura) %> |
-<%= link_to 'Back', descritivo_faturas_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              descritivo_faturas_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_descritivo_fatura_path(@descritivo_fatura), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              descritivo_fatura_path(@descritivo_fatura),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,7 +1,9 @@
 Odonto::Application.routes.draw do
   resources :descritivo_faturas
 
-  resources :faturas
+  resources :faturas do
+    get 'adicionar_procedimento', :on => :collection
+  end
 
   resources :consultas do
     get 'calendario', :on => :collection

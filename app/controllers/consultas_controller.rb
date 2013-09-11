@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ConsultasController < ApplicationController
   include ApplicationHelper
   before_action :set_consulta, only: [:show, :edit, :update, :destroy]
@@ -41,7 +42,7 @@ class ConsultasController < ApplicationController
     respond_to do |format|
       if @consulta.save
         if @consulta.fatura.nil?
-          @fatura   = Fatura.create!(:consulta_id => @consulta.id)
+          @fatura   = Fatura.create!(:consulta_id => @consulta.id, :descricao => "Cobrança do paciente #{@consulta.paciente.nome}")
         end
         format.html { redirect_to @consulta, notice: 'Consulta was successfully created.' }
         format.json { render action: 'show', status: :created, location: @consulta }

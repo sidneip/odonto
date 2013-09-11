@@ -1,24 +1,94 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Fatura -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Consulta:</strong>
-  <%= @fatura.consulta_id %>
-</p>
-
-<p>
-  <strong>Descricao:</strong>
-  <%= @fatura.descricao %>
-</p>
-
-<p>
-  <strong>Desconto:</strong>
-  <%= @fatura.desconto %>
-</p>
-
-<p>
-  <strong>Vencimento:</strong>
-  <%= @fatura.vencimento %>
-</p>
-
-<%= link_to 'Edit', edit_fatura_path(@fatura) %> |
-<%= link_to 'Back', faturas_path %>
+<div class="container">
+      <div class="row">
+        <div class="span4">
+                <img src="http://www.pick.com.mx/images/images_apoyopyme/img/grandes/imagen_promocional45.jpg" class="img-rounded logo">
+          <address>
+              <strong>Consultorio do MenDinho.</strong><br>
+              Centro de Osasco<br>
+              Chihuahua<br>
+          </address>
+        </div>
+        <div class="span4 well">
+          <table class="invoice-head">
+            <tbody>
+              <tr>
+                <td class="pull-right"><strong>Paciente #</strong></td>
+                <td><%= @fatura.consulta.paciente.nome %></td>
+              </tr>
+              <tr>
+                <td class="pull-right"><strong>Fatura Id #</strong></td>
+                <td><%= @fatura.id %></td>
+              </tr>
+              <tr>
+                <td class="pull-right"><strong>Vencimento</strong></td>
+                <td><%=@fatura.vencimento%></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8">
+          <h2>Descritivo</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8 well invoice-body">
+          <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Descricao</th>
+              <th>Data</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+          <%@fatura.descritivo_fatura.each do |descritivo|%>
+          <tr>
+            <td><%=descritivo.descricao%></td>
+            <td><%=descritivo.created_at.strftime("%m/%d/%Y")%></td>
+            <td>R$<%=descritivo.valor%></td>
+            </tr>
+          <%end%>  
+            <tr>
+              <td>&nbsp;</td>
+              <td><strong>Total</strong></td>
+              <td><strong>R$<%=@fatura.total_fatura%></strong></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8 well invoice-thank">
+          <h5 style="text-align:center;">Obrigado!</h5>
+        </div>
+      </div>
+      <div class="row">
+          <div class="span3">
+              <strong>Telefone:</strong> <a href="tel:555-555-5555">(11)3695-3695</a>
+          </div>
+          <div class="span3">
+              <strong>Email:</strong> <a href="mailto:hello@5marks.co">dinho@viajou.com.br</a>
+          </div>
+          <div class="span3">
+              <strong>Website:</strong> <a href="http://5marks.co">http://drdinho.com.br</a>
+          </div>
+      </div>
+    </div>
+    <div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              faturas_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_fatura_path(@fatura), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              fatura_path(@fatura),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,31 +1,40 @@
-<h1>Listing descritivo_faturas</h1>
-
-<table>
+<%- model_class = DescritivoFatura -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Fatura</th>
-      <th>Descricao</th>
-      <th>Valor</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:fatura_id) %></th>
+      <th><%= model_class.human_attribute_name(:descricao) %></th>
+      <th><%= model_class.human_attribute_name(:valor) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @descritivo_faturas.each do |descritivo_fatura| %>
       <tr>
+        <td><%= link_to descritivo_fatura.id, descritivo_fatura_path(descritivo_fatura) %></td>
         <td><%= descritivo_fatura.fatura_id %></td>
         <td><%= descritivo_fatura.descricao %></td>
         <td><%= descritivo_fatura.valor %></td>
-        <td><%= link_to 'Show', descritivo_fatura %></td>
-        <td><%= link_to 'Edit', edit_descritivo_fatura_path(descritivo_fatura) %></td>
-        <td><%= link_to 'Destroy', descritivo_fatura, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l descritivo_fatura.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_descritivo_fatura_path(descritivo_fatura), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      descritivo_fatura_path(descritivo_fatura),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Descritivo fatura', new_descritivo_fatura_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_descritivo_fatura_path,
+            :class => 'btn btn-primary' %>
