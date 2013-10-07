@@ -1,31 +1,40 @@
-<h1>Listing clinicas</h1>
-
-<table>
+<%- model_class = Clinica -%>
+<div class="page-header">
+  <h1>Clinicas No Sistema</h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Senha</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:senha) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @clinicas.each do |clinica| %>
       <tr>
+        <td><%= link_to clinica.id, clinica_path(clinica) %></td>
         <td><%= clinica.nome %></td>
         <td><%= clinica.email %></td>
         <td><%= clinica.senha %></td>
-        <td><%= link_to 'Show', clinica %></td>
-        <td><%= link_to 'Edit', edit_clinica_path(clinica) %></td>
-        <td><%= link_to 'Destroy', clinica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l clinica.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_clinica_path(clinica), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      clinica_path(clinica),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Clinica', new_clinica_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_clinica_path,
+            :class => 'btn btn-primary' %>
