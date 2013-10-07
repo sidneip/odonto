@@ -1,4 +1,6 @@
 Odonto::Application.routes.draw do
+  resources :clinicas
+
   resources :descritivo_faturas
 
   resources :faturas do

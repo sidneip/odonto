@@ -1,7 +1,9 @@
 <%= simple_form_for @fatura, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :consulta_id %>
   <%= f.input :descricao %>
-  <%= f.input :desconto %>
+  <%= f.label :desconto %>
+  <span class="input-group-addon">R$</span>
+  <%= f.text_field :desconto, :placeholder => "10,00", as: :float, :class=>"input-mini"%>
   <%= f.label :vencimento %>
   <%= f.text_field :vencimento %>
   <div class="form-actions">
