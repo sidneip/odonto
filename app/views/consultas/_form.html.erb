@@ -1,3 +1,10 @@
+<style type="text/css">
+  .direito{
+    position: absolute;
+    margin-left:280px;
+    top:150px;
+  }
+</style>
 <%= form_for(@consulta) do |f| %>
   <% if @consulta.errors.any? %>
       <h6><%= pluralize(@consulta.errors.count, "Erros encontrado(s) no formulario") %> </h6>
@@ -34,18 +41,20 @@
     <%= text_field_tag :convenio_nome %>
     <%= f.hidden_field :convenio_id %>
   </div>
-  <div class="field">
-    <%= f.label :dentista_id %>
-    <%= text_field_tag :dentista_nome %>
-    <%= f.hidden_field :dentista_id %>
-  </div>
-  <div class="field">
-    <%= f.label :observacao %>
-    <%= f.text_area :observacao %>
-  </div>
-  <div class="field">
-    <%= f.label :status %>
-    <%= f.select(:status, ['Marcado', 'Confirmado', 'Aguardando', 'Em Andamento', 'Atendido', 'Cancelado', 'Desmarcado']) %>
+  <div class="direito">
+    <div class="field">
+      <%= f.label :dentista_id %>
+      <%= text_field_tag :dentista_nome %>
+      <%= f.hidden_field :dentista_id %>
+    </div>
+    <div class="field">
+      <%= f.label :observacao %>
+      <%= f.text_area :observacao %>
+    </div>
+    <div class="field">
+      <%= f.label :status %>
+      <%= f.select(:status, ['Marcado', 'Confirmado', 'Aguardando', 'Em Andamento', 'Atendido', 'Cancelado', 'Desmarcado']) %>
+    </div>
   </div>
 <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
