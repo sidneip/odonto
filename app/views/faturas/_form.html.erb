@@ -2,10 +2,21 @@
   <%= f.input :consulta_id %>
   <%= f.input :descricao %>
   <%= f.input :desconto %>
-  <%= f.input :vencimento %>
+  <%= f.label :vencimento %>
+  <%= f.text_field :vencimento %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 faturas_path, :class => 'btn' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$("#fatura_vencimento").datepicker({
+    dateFormat: 'dd/mm/yy',
+    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+    nextText: 'Próximo',
+    prevText: 'Anterior'
+    });
+</script>
