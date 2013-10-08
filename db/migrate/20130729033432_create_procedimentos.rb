@@ -5,7 +5,7 @@ class CreateProcedimentos < ActiveRecord::Migration
       t.string :tipo
       t.float :valor
       t.float :custo
-
+      t.integer :clinica_id
       t.timestamps
     end
   end

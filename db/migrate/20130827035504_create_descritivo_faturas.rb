@@ -4,8 +4,10 @@ class CreateDescritivoFaturas < ActiveRecord::Migration
       t.integer :fatura_id
       t.string :descricao
       t.float :valor
-
       t.timestamps
     end
+  end
+  def down
+  	drop_table :descritivo_faturas
   end
 end

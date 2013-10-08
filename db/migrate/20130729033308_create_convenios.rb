@@ -15,7 +15,7 @@ class CreateConvenios < ActiveRecord::Migration
       t.string :telefone
       t.string :fax
       t.string :email
-
+      t.integer :clinica_id
       t.timestamps
     end
   end

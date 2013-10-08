@@ -20,7 +20,7 @@ class CreatePacientes < ActiveRecord::Migration
       t.integer :identidade_rg
       t.string :orgao_rg
       t.integer :cpf
-
+      t.integer :clinica_id
       t.timestamps
     end
   end

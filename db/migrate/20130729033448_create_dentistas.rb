@@ -20,7 +20,7 @@ class CreateDentistas < ActiveRecord::Migration
       t.string :orgao_rg
       t.string :cpf
       t.integer :cro
-
+      t.integer :clinica_id
       t.timestamps
     end
   end

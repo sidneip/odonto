@@ -5,7 +5,7 @@ class CreateFaturas < ActiveRecord::Migration
       t.string :descricao
       t.float :desconto
       t.date :vencimento
-
+      t.integer :clinica_id
       t.timestamps
     end
   end

@@ -11,7 +11,7 @@ class CreateConsultas < ActiveRecord::Migration
       t.integer :dentista_id
       t.text :observacao
       t.string :status
-
+      t.integer :clinica_id
       t.timestamps
     end
   end

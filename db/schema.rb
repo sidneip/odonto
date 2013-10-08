@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.integer  "dentista_id"
     t.text     "observacao"
     t.string   "status"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.string   "telefone"
     t.string   "fax"
     t.string   "email"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,6 +77,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.string   "orgao_rg"
     t.string   "cpf"
     t.integer  "cro"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.string   "descricao"
     t.float    "desconto"
     t.date     "vencimento"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -116,6 +120,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.integer  "identidade_rg"
     t.string   "orgao_rg"
     t.integer  "cpf"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,6 +130,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.string   "tipo"
     t.float    "valor"
     t.float    "custo"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
