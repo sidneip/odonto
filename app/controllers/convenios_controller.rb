@@ -31,7 +31,7 @@ class ConveniosController < ApplicationController
   # POST /convenios.json
   def create
     @convenio = Convenio.new(convenio_params)
-
+    @convenio.clinica_id = session[:clinica_id]
     respond_to do |format|
       if @convenio.save
         format.html { redirect_to @convenio, notice: 'Convenio was successfully created.' }

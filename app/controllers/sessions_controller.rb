@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
   	  if user
   	  session[:user_id] = user.id
       session[:tipo]    = 'clinica'
+      session[:clinica_id] = user.id
         redirect_to root_url, :notice => "Logado!"
       else
         flash.now.alert = "Email ou Senha Invalido"
