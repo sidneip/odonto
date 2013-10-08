@@ -3,7 +3,7 @@ class CreateClinicas < ActiveRecord::Migration
     create_table :clinicas do |t|
       t.string :nome
       t.string :email
-      t.string :senha
+      t.string :password
       t.timestamps
     end
   end

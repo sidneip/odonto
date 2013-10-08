@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
   create_table "clinicas", force: true do |t|
     t.string   "nome"
     t.string   "email"
-    t.string   "senha"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
