@@ -1,5 +1,6 @@
 class ClinicasController < ApplicationController
   before_action :set_clinica, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /clinicas
   # GET /clinicas.json

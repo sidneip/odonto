@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ProcedimentosController < ApplicationController
   before_action :set_procedimento, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /procedimentos
   # GET /procedimentos.json

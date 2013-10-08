@@ -1,5 +1,12 @@
-<%= link_to "Inicio", root_path, :class => 'brand' %>
+<%= link_to "Odontow", root_path, :class => 'brand' %>
+<%unless current_user%>
+  <ul class="nav navbar-nav navbar-right">
+    <li><%= link_to('Entrar', new_sessiom_path) %></li>
+  </ul>
+<%end%>
 <ul class="nav">
+  <%# MENU PARA USUARIOS LOGADOS %>
+  <% if current_user %>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastrar <b class="caret"></b></a>
       <ul class="dropdown-menu">
@@ -26,4 +33,11 @@
       <li><a href="#">Dados da Clinica</a></li>
       </ul>  
     </li>
+  <% end %>
 </ul>
+<% if current_user %>
+<p class="navbar-text pull-right">você esta logado como <a href="#" class="navbar-link"><%= current_user.email%> </a></p>
+<ul class="nav navbar-nav navbar-right">
+  <li><%= link_to('Sair', sessions_path, :method => 'delete') %></li>
+</ul>
+<%end%>

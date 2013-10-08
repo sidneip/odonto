@@ -1,5 +1,6 @@
 class FaturasController < ApplicationController
   before_action :set_fatura, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /faturas
   # GET /faturas.json

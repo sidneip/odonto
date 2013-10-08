@@ -1,5 +1,6 @@
 class DentistasController < ApplicationController
   before_action :set_dentista, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /dentistas
   # GET /dentistas.json

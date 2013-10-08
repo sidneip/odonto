@@ -1,5 +1,6 @@
 class ConveniosController < ApplicationController
   before_action :set_convenio, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /convenios
   # GET /convenios.json

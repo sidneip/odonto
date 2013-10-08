@@ -2,6 +2,7 @@
 class ConsultasController < ApplicationController
   include ApplicationHelper
   before_action :set_consulta, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /consultas
   # GET /consultas.json

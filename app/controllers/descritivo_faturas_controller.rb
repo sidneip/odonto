@@ -1,5 +1,6 @@
 class DescritivoFaturasController < ApplicationController
   before_action :set_descritivo_fatura, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /descritivo_faturas
   # GET /descritivo_faturas.json

@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= Clinica.find(session[:user_id]) if session[:user_id]
   end
+  
+  def is_logged?
+  	if current_user.nil?
+  		redirect_to root_url, :alert => "Você não esta logado"
+    end
+  end
 
   helper_method :current_user
+  helper_method :is_logged?
 end
