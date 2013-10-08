@@ -11,3 +11,4 @@ class CreateClinicas < ActiveRecord::Migration
   	drop_table :clinicas
   end
 end
+

@@ -5,6 +5,7 @@ class Consulta < ActiveRecord::Base
   belongs_to :convenio
   belongs_to :dentista
   has_one    :fatura
+  belongs_to :clinica
   validates_presence_of :data,:paciente_id, :tipo, :dentista,:status,  :message => 'é necessario'
   validate :horadentista
   before_save :horadentista, :on => :save

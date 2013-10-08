@@ -14,6 +14,9 @@ class ClinicasController < ApplicationController
 
   # GET /clinicas/new
   def new
+    if session[:user_id]
+      redirect_to root_url, :alert => "Você já esta logado"
+    end
     @clinica = Clinica.new
   end
 
@@ -69,6 +72,6 @@ class ClinicasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinica_params
-      params.require(:clinica).permit(:nome, :email, :senha)
+      params.require(:clinica).permit(:nome, :email, :password)
     end
 end

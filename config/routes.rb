@@ -1,6 +1,8 @@
 Odonto::Application.routes.draw do
   resources :clinicas
-
+  resources :sessions do
+    post 'create', :on => :collection
+  end
   resources :descritivo_faturas
 
   resources :faturas do
