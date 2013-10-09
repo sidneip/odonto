@@ -22,7 +22,7 @@
       <li><%= link_to('Procedimento', new_procedimento_path) %></li>
       <li class="divider"></li>
       <li class="nav-header">Cofinguração</li>
-      <li><a href="#">Dados da Clinica</a></li>
+      <li><%= link_to('Dados da Clinica', edit_clinica_path(session[:clinica_id])) %></li>
       </ul>
     </li>
 

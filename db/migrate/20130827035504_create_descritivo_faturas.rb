@@ -4,6 +4,7 @@ class CreateDescritivoFaturas < ActiveRecord::Migration
       t.integer :fatura_id
       t.string :descricao
       t.float :valor
+      t.integer :clinica_id
       t.timestamps
     end
   end

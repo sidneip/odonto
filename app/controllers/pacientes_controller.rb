@@ -4,7 +4,7 @@ class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.json
   def index
-    @pacientes = Paciente.all
+    @pacientes = Paciente.where(:clinica_id => session[:clinica_id])
     respond_to do |format|
         format.html 
         format.xml {render :xml => @pacientes}
@@ -15,6 +15,9 @@ class PacientesController < ApplicationController
   # GET /pacientes/1
   # GET /pacientes/1.json
   def show
+    if @paciente.nil?
+      redirect_to pacientes_path, alert: 'paciente não encontrado'
+    end
   end
 
   # GET /pacientes/new
@@ -24,6 +27,9 @@ class PacientesController < ApplicationController
 
   # GET /pacientes/1/edit
   def edit
+    if @paciente.nil?
+      redirect_to pacientes_path, alert: 'paciente não encontrado'
+    end
   end
 
   # POST /pacientes
@@ -69,11 +75,11 @@ class PacientesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_paciente
-      @paciente = Paciente.find(params[:id])
+      @paciente = Paciente.where("id = ? AND clinica_id = ?", params[:id], session[:clinica_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paciente_params
-      params.require(:paciente).permit(:nome, :sexo, :data_nascimento, :estado_civil, :nacionalidade, :nome_mae, :cep, :rua, :numero, :bairro, :cidade, :uf, :complemento, :telefone, :celular, :id, :email, :identidade_rg, :orgao_rg, :cpf)
+      params.require(:paciente).permit(:nome, :sexo, :data_nascimento, :estado_civil, :nacionalidade, :nome_mae, :cep, :rua, :numero, :bairro, :cidade, :uf, :complemento, :telefone, :celular, :id, :email, :identidade_rg, :orgao_rg, :cpf).merge(clinica_id: session[:clinica_id])
     end
 end

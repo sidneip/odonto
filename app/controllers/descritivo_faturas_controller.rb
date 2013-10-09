@@ -5,7 +5,7 @@ class DescritivoFaturasController < ApplicationController
   # GET /descritivo_faturas
   # GET /descritivo_faturas.json
   def index
-    @descritivo_faturas = DescritivoFatura.all
+    @descritivo_faturas = DescritivoFatura.where(:clinica_id => session[:clinica_id])
   end
 
   # GET /descritivo_faturas/1

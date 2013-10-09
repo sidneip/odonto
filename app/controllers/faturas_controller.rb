@@ -5,12 +5,15 @@ class FaturasController < ApplicationController
   # GET /faturas
   # GET /faturas.json
   def index
-    @faturas = Fatura.all
+    @faturas = Fatura.where(:clinica_id => session[:clinica_id])
   end
 
   # GET /faturas/1
   # GET /faturas/1.json
   def show
+    if @fatura.nil?
+      redirect_to faturas_path, notice: 'fatura não encontrada'
+    end
   end
 
   # GET /faturas/new
@@ -20,6 +23,9 @@ class FaturasController < ApplicationController
 
   # GET /faturas/1/edit
   def edit
+    if @fatura.nil?
+      redirect_to faturas_path, notice: 'fatura não encontrada'
+    end
   end
 
   # POST /faturas
@@ -65,11 +71,11 @@ class FaturasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fatura
-      @fatura = Fatura.find(params[:id])
+      @fatura = Fatura.where("id = ? AND clinica_id = ?", params[:id], session[:clinica_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fatura_params
-      params.require(:fatura).permit(:consulta_id, :descricao, :desconto, :vencimento)
+      params.require(:fatura).permit(:consulta_id, :descricao, :desconto, :vencimento).merge(clinica_id: session[:clinica_id])
     end
 end

@@ -24,7 +24,8 @@ Odonto::Application.routes.draw do
 
   resources :pacientes
 
-  get "/registrar", :controller => "sessions", :action=>"new"
+  get "/registrar", :controller => "clinicas", :action=>"new"
+  get "/login", :controller => "sessions", :action=>"new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

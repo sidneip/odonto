@@ -13,7 +13,7 @@
   <dt><strong>Tipo da Consulta :</strong></dt>
   <dd><%= @consulta.tipo %></dd>
   <dt><strong>Procedimento:</strong></dt>
-  <dd><%= @consulta.procedimento.nome %></dd>
+  <dd><%= @consulta.try(:procedimento).try(:nome) %></dd>
   <dt><strong>Paciente:</strong></dt>
   <dd><%= @consulta.paciente.nome %></dd>
   <dt><strong>Convenio:</strong></dt>

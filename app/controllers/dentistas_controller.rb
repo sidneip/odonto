@@ -5,7 +5,7 @@ class DentistasController < ApplicationController
   # GET /dentistas
   # GET /dentistas.json
   def index
-    @dentistas = Dentista.all
+    @dentistas = Dentista.where(:clinica_id => session[:clinica_id])
     respond_to do |format|
         format.xml {render :xml => @dentistas}
         format.json {render :json => @dentistas}
@@ -16,6 +16,9 @@ class DentistasController < ApplicationController
   # GET /dentistas/1
   # GET /dentistas/1.json
   def show
+    if @dentista.nil?
+      redirect_to dentistas_path, alert: 'dentista não encontrado'
+    end
   end
 
   # GET /dentistas/new
@@ -25,6 +28,9 @@ class DentistasController < ApplicationController
 
   # GET /dentistas/1/edit
   def edit
+    if @dentista.nil?
+      redirect_to dentistas_path, alert: 'dentista não encontrado'
+    end
   end
 
   # POST /dentistas
@@ -70,11 +76,11 @@ class DentistasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dentista
-      @dentista = Dentista.find(params[:id])
+      @dentista = Dentista.where("id = ? AND clinica_id = ?", params[:id], session[:clinica_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dentista_params
-      params.require(:dentista).permit(:nome, :email, :password, :sexo, :data_nasc, :estado_civil, :cep, :rua, :numero, :bairro, :cidade, :uf, :complemento, :telefone, :celular, :identidade_rg, :orgao_rg, :cpf, :cro)
+      params.require(:dentista).permit(:nome, :email, :password, :sexo, :data_nasc, :estado_civil, :cep, :rua, :numero, :bairro, :cidade, :uf, :complemento, :telefone, :celular, :identidade_rg, :orgao_rg, :cpf, :cro).merge(clinica_id: session[:clinica_id])
     end
 end

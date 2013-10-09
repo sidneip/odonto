@@ -8,12 +8,12 @@ class ConsultasController < ApplicationController
   # GET /consultas.json
   def index
     unless params[:search].try(:nil) || params[:search].try(:blank?)
-        @consultas = Consulta.joins(:paciente).where("pacientes.nome like ?", "%#{params[:search]}%").order("created_at DESC").page(params[:page]).per(8)
+        @consultas = Consulta.where(:clinica_id => session[:clinica_id]).joins(:paciente).where("pacientes.nome like ? AND pacientes.clinica_id = ?", "%#{params[:search]}%", "#{session[:clinica_id]}").order("created_at DESC").page(params[:page]).per(8)
     else
-        @consultas = Consulta.order("created_at DESC").page(params[:page]).per(8)
+        @consultas = Consulta.where(:clinica_id => session[:clinica_id]).order("created_at DESC").page(params[:page]).per(8)
     end
     @consulta = Consulta.new
-    @consultasxml = Consulta.all
+    @consultasxml = Consulta.where(:clinica_id => session[:clinica_id])
     respond_to do |format|
         format.xml {render :xml => @consultasxml.to_xml(:include => :paciente) }
         format.json {render :json => @consultas}
@@ -24,6 +24,9 @@ class ConsultasController < ApplicationController
   # GET /consultas/1
   # GET /consultas/1.json
   def show
+    if @consulta.nil?
+      redirect_to consultas_path, :alert => "Consulta não encontrada!"
+    end
   end
 
   # GET /consultas/new
@@ -33,7 +36,9 @@ class ConsultasController < ApplicationController
 
   # GET /consultas/1/edit
   def edit
-    @consulta = Consulta.find(params[:id])
+    if @consulta.nil?
+      redirect_to consultas_path, :alert => "Consulta não encontrada!"
+    end
   end
 
   # POST /consultas
@@ -107,12 +112,12 @@ class ConsultasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_consulta
-      @consulta = Consulta.find(params[:id])
+      @consulta = Consulta.where("id = ? AND clinica_id = ?", params[:id], session[:clinica_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consulta_params
-      params.require(:consulta).permit(:data, :hora_inicio, :hora_fim, :tipo, :procedimento_id, :paciente_id, :convenio_id, :dentista_id, :observacao, :status)
+      params.require(:consulta).permit(:data, :hora_inicio, :hora_fim, :tipo, :procedimento_id, :paciente_id, :convenio_id, :dentista_id, :observacao, :status).merge(clinica_id: session[:clinica_id])
     end
 
 

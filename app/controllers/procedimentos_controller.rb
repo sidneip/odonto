@@ -6,7 +6,7 @@ class ProcedimentosController < ApplicationController
   # GET /procedimentos
   # GET /procedimentos.json
   def index
-    @procedimentos = Procedimento.all
+    @procedimentos = Procedimento.where(:clinica_id => session[:clinica_id])
     respond_to do |format|
       format.html
       format.xml {render :xml => @procedimentos}
@@ -16,6 +16,9 @@ class ProcedimentosController < ApplicationController
   # GET /procedimentos/1
   # GET /procedimentos/1.json
   def show
+    if @procedimento.nil?
+      redirect_to procedimentos_path, alert: 'procedimento não encontrado'
+    end
   end
 
   # GET /procedimentos/new
@@ -25,6 +28,9 @@ class ProcedimentosController < ApplicationController
 
   # GET /procedimentos/1/edit
   def edit
+    if @procedimento.nil?
+      redirect_to procedimentos_path, alert: 'procedimento não encontrado'
+    end
   end
 
   # POST /procedimentos
@@ -69,11 +75,11 @@ class ProcedimentosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_procedimento
-      @procedimento = Procedimento.find(params[:id])
+      @procedimento = Procedimento.where("id = ? AND clinica_id = ?", params[:id], session[:clinica_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def procedimento_params
-      params.require(:procedimento).permit(:nome, :tipo, :valor, :custo)
+      params.require(:procedimento).permit(:nome, :tipo, :valor, :custo)..merge(clinica_id: session[:clinica_id])
     end
 end

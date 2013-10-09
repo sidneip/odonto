@@ -5,7 +5,7 @@ class ConveniosController < ApplicationController
   # GET /convenios
   # GET /convenios.json
   def index
-    @convenios = Convenio.all
+    @convenios = Convenio.where(:clinica_id => session[:clinica_id])
     respond_to do |format|
         format.html
         format.xml {render :xml => @convenios}
@@ -16,6 +16,9 @@ class ConveniosController < ApplicationController
   # GET /convenios/1
   # GET /convenios/1.json
   def show
+    if @convenio.nil?
+      redirect_to conveios_path, alert: "Convenio não encontrado"
+    end
   end
 
   # GET /convenios/new
@@ -25,13 +28,15 @@ class ConveniosController < ApplicationController
 
   # GET /convenios/1/edit
   def edit
+    if @convenio.nil?
+      redirect_to conveios_path, alert: "Convenio não encontrado"
+    end
   end
 
   # POST /convenios
   # POST /convenios.json
   def create
     @convenio = Convenio.new(convenio_params)
-    @convenio.clinica_id = session[:clinica_id]
     respond_to do |format|
       if @convenio.save
         format.html { redirect_to @convenio, notice: 'Convenio was successfully created.' }
@@ -70,11 +75,11 @@ class ConveniosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_convenio
-      @convenio = Convenio.find(params[:id])
+      @convenio = Convenio.where("id = ? AND clinica_id = ?", params[:id], session[:clinica_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def convenio_params
-      params.require(:convenio).permit(:codigo_convenio, :cnpj, :razao_social, :nome_fantasia, :logradouro, :numero, :bairro, :complemento, :cep, :uf, :cidade, :telefone, :fax, :email)
+      params.require(:convenio).permit(:codigo_convenio, :cnpj, :razao_social, :nome_fantasia, :logradouro, :numero, :bairro, :complemento, :cep, :uf, :cidade, :telefone, :fax, :email).merge(clinica_id: session[:clinica_id])
     end
 end

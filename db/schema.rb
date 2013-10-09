@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20131007182832) do
     t.integer  "fatura_id"
     t.string   "descricao"
     t.float    "valor"
+    t.integer  "clinica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

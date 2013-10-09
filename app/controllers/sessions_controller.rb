@@ -10,9 +10,9 @@ class SessionsController < ApplicationController
   def create
   	user = Clinica.authenticatewithmailpass(params[:session][:email], params[:session][:password])
   	  if user
-  	  session[:user_id] = user.id
-      session[:tipo]    = 'clinica'
-      session[:clinica_id] = user.id
+  	    session[:user_id] = user.id
+        session[:tipo]    = 'clinica'
+        session[:clinica_id] = user.id
         redirect_to root_url, :notice => "Logado!"
       else
         flash.now.alert = "Email ou Senha Invalido"
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    reset_session
     redirect_to root_url, :notice => "Logout!"
   end
 end
