@@ -1,0 +1,2 @@
+module ConsultaProcedimentosHelper
+end

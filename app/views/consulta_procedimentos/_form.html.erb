@@ -1,0 +1,33 @@
+<%= form_for(@consulta_procedimento) do |f| %>
+  <% if @consulta_procedimento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consulta_procedimento.errors.count, "error") %> prohibited this consulta_procedimento from being saved:</h2>
+
+      <ul>
+      <% @consulta_procedimento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :clinica_id %><br>
+    <%= f.number_field :clinica_id %>
+  </div>
+  <div class="field">
+    <%= f.label :procedimento_id %><br>
+    <%= f.number_field :procedimento_id %>
+  </div>
+  <div class="field">
+    <%= f.label :consulta_id %><br>
+    <%= f.number_field :consulta_id %>
+  </div>
+  <div class="field">
+    <%= f.label :valor %><br>
+    <%= f.text_field :valor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

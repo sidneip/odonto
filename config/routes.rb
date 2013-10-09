@@ -1,4 +1,6 @@
 Odonto::Application.routes.draw do
+  resources :consulta_procedimentos
+
   resources :clinicas
   resources :sessions do
     post 'create', :on => :collection

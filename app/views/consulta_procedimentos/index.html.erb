@@ -1,0 +1,33 @@
+<h1>Listing consulta_procedimentos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clinica</th>
+      <th>Procedimento</th>
+      <th>Consulta</th>
+      <th>Valor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consulta_procedimentos.each do |consulta_procedimento| %>
+      <tr>
+        <td><%= consulta_procedimento.clinica_id %></td>
+        <td><%= consulta_procedimento.procedimento_id %></td>
+        <td><%= consulta_procedimento.consulta_id %></td>
+        <td><%= consulta_procedimento.valor %></td>
+        <td><%= link_to 'Show', consulta_procedimento %></td>
+        <td><%= link_to 'Edit', edit_consulta_procedimento_path(consulta_procedimento) %></td>
+        <td><%= link_to 'Destroy', consulta_procedimento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consulta procedimento', new_consulta_procedimento_path %>
