@@ -48,6 +48,7 @@
                       :class => 'btn btn-mini btn-danger' %>
           <%= link_to 'Confirmar',
                       confirmar_consulta_consultas_path(:id => consulta.id), :class => 'btn btn-mini btn-primary' %>
+          <%= link_to 'Adicionar Procedimento', new_consulta_procedimento_path(:consulta_id => consulta.id), :class => 'btn btn-mini btn-primary' %>
 
           <a data-target="#myModal" href="<%=consulta_path(consulta)%>" role="button" class="btn btn-mini" data-toggle="modal">Visualizar</a>
 

@@ -1,33 +1,42 @@
-<%= form_for(@consulta_procedimento) do |f| %>
-  <% if @consulta_procedimento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@consulta_procedimento.errors.count, "error") %> prohibited this consulta_procedimento from being saved:</h2>
-
-      <ul>
-      <% @consulta_procedimento.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= simple_form_for @consulta_procedimento, :html => { :class => 'form-horizontal' } do |f| %>
+ <%= f.label :paciente %>
+  <%= f.text_field :consulta_id, :disabled => true, :value => @consulta.try(:paciente).try(:nome)%>
   <div class="field">
-    <%= f.label :clinica_id %><br>
-    <%= f.number_field :clinica_id %>
+    <%= f.label :procedimento_id %>
+    <%= text_field_tag :procedimento_nome %> +
+    <%= f.hidden_field :procedimento_id %>
   </div>
-  <div class="field">
-    <%= f.label :procedimento_id %><br>
-    <%= f.number_field :procedimento_id %>
-  </div>
-  <div class="field">
-    <%= f.label :consulta_id %><br>
-    <%= f.number_field :consulta_id %>
-  </div>
-  <div class="field">
-    <%= f.label :valor %><br>
-    <%= f.text_field :valor %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <%= f.input :valor %>
+  <br>
+  <%= check_box_tag :fatura %>  Adicionar a Fatura 
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                consulta_procedimentos_path, :class => 'btn' %>
   </div>
 <% end %>
+<script>
+jQuery(function($){
+  $.ajax({
+      url: "../procedimentos.xml",
+      dataType: "xml",
+      success: function( xmlResponse ) {
+        var data = $( "procedimento", xmlResponse ).map(function() {
+          return {
+            value: $( "nome", this ).text(),
+            id: $( "id", this ).text()
+          };
+        }).get();
+        $( "#procedimento_nome" ).autocomplete({
+          source: data,
+          minLength: 0,
+          select: function(event, ui) {
+                $('#procedimento_nome').val(ui.item.nome);
+                $('#consulta_procedimento_procedimento_id').val(ui.item.id);
+                $('#consulta_procedimento_valor').val(ui.item.valor);
+            },
+        });
+      }
+    });
+};
+  </script>
