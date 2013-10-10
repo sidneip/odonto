@@ -80,6 +80,6 @@ class ProcedimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def procedimento_params
-      params.require(:procedimento).permit(:nome, :tipo, :valor, :custo)..merge(clinica_id: session[:clinica_id])
+      params.require(:procedimento).permit(:nome, :tipo, :valor, :custo).merge(clinica_id: session[:clinica_id])
     end
 end

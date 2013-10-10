@@ -48,7 +48,7 @@ class ConsultasController < ApplicationController
     respond_to do |format|
       if @consulta.save
         if @consulta.fatura.nil?
-          @fatura   = Fatura.create!(:consulta_id => @consulta.id, :descricao => "Cobrança do paciente #{@consulta.paciente.nome}")
+          @fatura   = Fatura.create!(:consulta_id => @consulta.id, :descricao => "Cobrança do paciente #{@consulta.paciente.nome}", :clinica_id => session[:clinica_id])
         end
         format.html { redirect_to @consulta, notice: 'Consulta was successfully created.' }
         format.json { render action: 'show', status: :created, location: @consulta }
@@ -101,7 +101,7 @@ class ConsultasController < ApplicationController
   end
 
   def confirmar_consulta
-    @consulta = Consulta.find(params[:id])
+    @consulta = Consulta.find(params[:consulta_id])
     @consulta.update_attribute(:status, "Confirmado")
     respond_to do |format|
       format.html { redirect_to consultas_path, notice: "Consulta do paciente #{@consulta.paciente.nome} na data #{@consulta.data} confirmada" } 

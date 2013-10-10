@@ -13,7 +13,7 @@ Odonto::Application.routes.draw do
 
   resources :consultas do
     get 'calendario', :on => :collection
-    get 'confirmar_consulta',  :on => :collection
+    get 'confirmar_consulta'
     get 'calendario_dentista', :on => :collection
   end
   root to: 'static#index'

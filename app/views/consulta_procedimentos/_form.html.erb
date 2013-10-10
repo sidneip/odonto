@@ -1,6 +1,7 @@
 <%= simple_form_for @consulta_procedimento, :html => { :class => 'form-horizontal' } do |f| %>
  <%= f.label :paciente %>
-  <%= f.text_field :consulta_id, :disabled => true, :value => @consulta.try(:paciente).try(:nome)%>
+  <%= f.text_field :consulta_paciente, :disabled => true, :value => @consulta.try(:paciente).try(:nome)%>
+  <%= f.hidden_field :consulta_id, :value => params[:consulta_id] %>
   <div class="field">
     <%= f.label :procedimento_id %>
     <%= text_field_tag :procedimento_nome %> +
@@ -8,7 +9,7 @@
   </div>
   <%= f.input :valor %>
   <br>
-  <%= check_box_tag :fatura %>  Adicionar a Fatura 
+  <%= f.input :adicionar_a_fatura, :as => :boolean, input_html: {checked: true} %> 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
@@ -38,5 +39,5 @@ jQuery(function($){
         });
       }
     });
-};
+  });
   </script>

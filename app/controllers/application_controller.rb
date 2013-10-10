@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     return 'clinica'  if session[:tipo] == 'clinica'
     return 'dentista' if session[:tipo] == 'dentista'
     return 'paciente' if session[:tipo] == 'paciente'
-  end
+  end 
 
   helper_method :current_user
   helper_method :is_logged?
