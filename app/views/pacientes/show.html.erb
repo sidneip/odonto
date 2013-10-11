@@ -124,7 +124,9 @@
   </thead>
   <tbody>
     <% @receita_total=0 %>
+    <% @receita_mes=0 %>
     <% @paciente.consultas.each do |consulta| %>
+    <% @receita_mes = @receita_mes + consulta.fatura.total_fatura if consulta.fatura.created_at.month == Date.today.month %>
     <% @receita_total = @receita_total + consulta.fatura.total_fatura%>
       <tr>
         <td><%= link_to "Visualizar Fatura #{consulta.fatura.id}", fatura_path(consulta.fatura) %></td>
@@ -150,4 +152,10 @@
 <td colspan="6"></td>
 <td><b>Total: </b></td>
 <td><%= @receita_total %> </td>
+<tr>
+<td colspan="6"></td>
+<td><b>Faturamento Mês Atual: </b></td>
+<td><%= @receita_mes %> </td>
+</tr>
+
 </table>
