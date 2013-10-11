@@ -1,5 +1,6 @@
 class ConsultaProcedimentosController < ApplicationController
   before_action :set_consulta_procedimento, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged?
 
   # GET /consulta_procedimentos
   # GET /consulta_procedimentos.json

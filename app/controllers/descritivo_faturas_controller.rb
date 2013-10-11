@@ -29,7 +29,7 @@ class DescritivoFaturasController < ApplicationController
 
     respond_to do |format|
       if @descritivo_fatura.save
-        format.html { redirect_to @descritivo_fatura, notice: 'Descritivo fatura was successfully created.' }
+        format.html { redirect_to @descritivo_fatura.fatura, notice: 'Descritivo fatura was successfully created.' }
         format.json { render action: 'show', status: :created, location: @descritivo_fatura }
       else
         format.html { render action: 'new' }

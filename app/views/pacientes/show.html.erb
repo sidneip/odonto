@@ -55,3 +55,99 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
+
+
+<div class="page-header">
+  <h1>Consultas</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:data) %></th>
+      <th>Horario </th>
+      <th><%= model_class.human_attribute_name(:tipo) %></th>
+      <th><%= model_class.human_attribute_name(:paciente_id) %></th>
+      <th><%= model_class.human_attribute_name(:convenio_id) %></th>
+      <th><%= model_class.human_attribute_name(:dentista_id) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @paciente.consultas.each do |consulta| %>
+      <tr>
+        <td><%= link_to consulta.id, consulta_path(consulta) %></td>
+        <td><%= formata_data(consulta.data) %></td>
+        <td><%= "#{consulta.hora_inicio}:#{consulta.hora_fim}" %></td>
+        <td><%= consulta.tipo %></td>
+        <td><%= consulta.paciente.try(:nome) %></td>
+        <td><%= consulta.try(:convenio).try(:nome_fantasia) %></td>
+        <td><%= consulta.dentista.try(:nome) %></td>
+        <td><%= consulta.status %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_consulta_path(consulta), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      consulta_path(consulta),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Confirmar',
+                      consulta_confirmar_consulta_path(consulta), :class => 'btn btn-mini btn-primary' %>
+          <%= link_to 'Adicionar Procedimento', new_consulta_procedimento_path(:consulta_id => consulta.id), :class => 'btn btn-mini btn-primary' %>
+
+          <a data-target="#myModal" href="<%=consulta_path(consulta)%>" role="button" class="btn btn-mini" data-toggle="modal">Visualizar</a>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="page-header">
+  <h1>Faturas</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:consulta_id) %></th>
+      <th><%= model_class.human_attribute_name(:descricao) %></th>
+      <th>Paciente</th>
+      <th><%= model_class.human_attribute_name(:vencimento) %></th>
+      <th>Total</th>
+      <th><%= Data %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @receita_total=0 %>
+    <% @paciente.consultas.each do |consulta| %>
+    <% @receita_total = @receita_total + consulta.fatura.total_fatura%>
+      <tr>
+        <td><%= link_to "Visualizar Fatura #{consulta.fatura.id}", fatura_path(consulta.fatura) %></td>
+        <td><%= link_to "Visualizar Consulta", consulta_path(consulta) %></td>
+        <td><%= consulta.fatura.descricao %></td>
+        <td><%= consulta.fatura.consulta.paciente.nome %></td>
+        <td><%= consulta.fatura.vencimento %></td>
+        <td>R$<%= consulta.fatura.try(:total_fatura) %></td>
+        <td><%= consulta.fatura.created_at.strftime("%m/%d/%Y") %></td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      fatura_path(consulta.fatura),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+          <%= link_to "Adicionar Item", new_descritivo_fatura_path(:fatura_id => consulta.fatura.id), :class => 'btn btn-mini'          %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_fatura_path(consulta.fatura), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+<td colspan="6"></td>
+<td><b>Total: </b></td>
+<td><%= @receita_total %> </td>
+</table>
