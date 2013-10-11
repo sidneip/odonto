@@ -13,10 +13,10 @@ group :development do
   gem "better_errors"
   gem "debugger"
   gem "binding_of_caller"
+  gem 'mysql2'
 end
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -45,6 +45,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'pg'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
