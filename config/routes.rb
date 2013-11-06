@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Odonto::Application.routes.draw do
   resources :consulta_procedimentos
 

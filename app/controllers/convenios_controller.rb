@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ConveniosController < ApplicationController
   before_action :set_convenio, only: [:show, :edit, :update, :destroy]
   before_action :is_logged?

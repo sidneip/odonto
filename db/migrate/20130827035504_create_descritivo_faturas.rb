@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDescritivoFaturas < ActiveRecord::Migration
   def change
     create_table :descritivo_faturas do |t|

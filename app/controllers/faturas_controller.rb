@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FaturasController < ApplicationController
   before_action :set_fatura, only: [:show, :edit, :update, :destroy]
   before_action :is_logged?

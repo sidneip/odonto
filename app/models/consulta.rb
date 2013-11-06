@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #encoding:utf-8
 class Consulta < ActiveRecord::Base
   belongs_to :paciente

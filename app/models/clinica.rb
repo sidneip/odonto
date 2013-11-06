@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Clinica < ActiveRecord::Base
 
   def self.authenticate(password)

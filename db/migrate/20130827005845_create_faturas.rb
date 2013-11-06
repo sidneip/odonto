@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFaturas < ActiveRecord::Migration
   def change
     create_table :faturas do |t|

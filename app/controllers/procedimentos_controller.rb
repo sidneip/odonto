@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #encoding: utf-8
 class ProcedimentosController < ApplicationController
   before_action :set_procedimento, only: [:show, :edit, :update, :destroy]

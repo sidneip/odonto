@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ConsultaProcedimentosController < ApplicationController
   before_action :set_consulta_procedimento, only: [:show, :edit, :update, :destroy]
   before_action :is_logged?

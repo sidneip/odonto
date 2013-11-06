@@ -1,0 +1,7 @@
+# -*- encoding : utf-8 -*-
+##
+# GhostMethod represents a method referenced only by a comment
+
+class RDoc::GhostMethod < RDoc::AnyMethod
+end
+

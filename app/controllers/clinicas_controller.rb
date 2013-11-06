@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+#encoding: utf-8
 class ClinicasController < ApplicationController
   before_action :set_clinica, only: [:show, :edit, :update, :destroy]
   before_action :is_logged?, except:[:new, :create]

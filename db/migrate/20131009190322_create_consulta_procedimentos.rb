@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateConsultaProcedimentos < ActiveRecord::Migration
   def change
     create_table :consulta_procedimentos do |t|

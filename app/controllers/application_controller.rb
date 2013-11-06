@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+#encoding: utf-8
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -17,7 +19,7 @@ class ApplicationController < ActionController::Base
   
   def is_logged?
   	if current_user.nil?
-  		redirect_to root_url, :alert => "Você não esta logado"
+  		redirect_to root_url, :alert => "Voce nao esta logado"
     end
   end
 

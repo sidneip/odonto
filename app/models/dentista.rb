@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Dentista < ActiveRecord::Base
 	belongs_to :clinica
 	has_many :consulta

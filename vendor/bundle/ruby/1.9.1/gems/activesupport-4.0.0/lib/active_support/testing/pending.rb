@@ -1,0 +1,15 @@
+# -*- encoding : utf-8 -*-
+require 'active_support/deprecation'
+
+module ActiveSupport
+  module Testing
+    module Pending # :nodoc:
+      unless defined?(Spec) 
+        def pending(description = "", &block)
+          ActiveSupport::Deprecation.warn("#pending is deprecated and will be removed in Rails 4.1, please use #skip instead.")
+          skip(description.blank? ? nil : description)
+        end
+      end
+    end
+  end
+end

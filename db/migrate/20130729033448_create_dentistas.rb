@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDentistas < ActiveRecord::Migration
   def change
     create_table :dentistas do |t|

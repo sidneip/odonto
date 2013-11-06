@@ -1,0 +1,14 @@
+# -*- encoding : utf-8 -*-
+module Arel
+  module Nodes
+    class True < Arel::Nodes::Node
+      def hash
+        self.class.hash
+      end
+
+      def eql? other
+        self.class == other.class
+      end
+    end
+  end
+end

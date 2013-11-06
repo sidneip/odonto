@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SessionsController < ApplicationController
   before_action :is_logged?, :only => [:destroy]
 

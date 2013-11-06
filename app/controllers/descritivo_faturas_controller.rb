@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DescritivoFaturasController < ApplicationController
   before_action :set_descritivo_fatura, only: [:show, :edit, :update, :destroy]
   before_action :is_logged?
