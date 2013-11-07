@@ -8,11 +8,10 @@ gem "twitter-bootstrap-rails"
 gem 'simple_form'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
-
-  gem "better_errors"
-  gem "debugger"
-  gem "binding_of_caller"
-  gem 'mysql2'
+gem "better_errors"
+gem "debugger
+gem "binding_of_caller"
+gem 'mysql2'
 
 # Use mysql as the database for Active Record
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -43,10 +42,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :production do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'pg'
-end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -58,3 +53,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :production do
+end
