@@ -9,7 +9,7 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem "better_errors"
-gem "debugger
+gem "debugger"
 gem "binding_of_caller"
 gem 'mysql2'
 
