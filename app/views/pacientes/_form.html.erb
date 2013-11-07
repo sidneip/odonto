@@ -1,4 +1,6 @@
 <%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="row">
+  <div class="span6">
   <div class="control-group">
     <%= f.label :nome, :class => 'control-label' %>
     <div class="controls">
@@ -53,6 +55,8 @@
       <%= f.text_field :numero, :class => 'text_field' %>
     </div>
   </div>
+</div>
+  <div class="span6">
   <div class="control-group">
     <%= f.label :bairro, :class => 'control-label' %>
     <div class="controls">
@@ -113,7 +117,8 @@
       <%= f.text_field :cpf, :class => 'text_field' %>
     </div>
   </div>
-
+  </div>
+  </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
