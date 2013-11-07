@@ -9,12 +9,10 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
-group :development do
   gem "better_errors"
   gem "debugger"
   gem "binding_of_caller"
   gem 'mysql2'
-end
 
 # Use mysql as the database for Active Record
 gem 'bcrypt-ruby', '~> 3.0.0'
