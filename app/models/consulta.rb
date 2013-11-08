@@ -8,7 +8,7 @@ class Consulta < ActiveRecord::Base
   has_one    :fatura
   belongs_to :clinica
   has_many   :consulta_precedimento
-  validates_presence_of :data,:paciente_id, :tipo, :dentista,:status,  :message => 'é necessario'
+  validates_presence_of :data,:paciente_id, :tipo, :dentista,:status, :clinica_id, :message => 'é necessario'
   validate :horadentista
   before_save :horadentista, :on => :save
 

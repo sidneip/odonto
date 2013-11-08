@@ -8,7 +8,7 @@ class ClinicasController < ApplicationController
   # GET /clinicas
   # GET /clinicas.json
   def index
-    @clinicas = Clinica.all
+    @clinicas = Clinica.find(session[:clinica_id])
   end
 
   # GET /clinicas/1

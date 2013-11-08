@@ -5,33 +5,27 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:nome) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:password) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @clinicas.each do |clinica| %>
       <tr>
-        <td><%= link_to clinica.id, clinica_path(clinica) %></td>
-        <td><%= clinica.nome %></td>
-        <td><%= clinica.email %></td>
-        <td><%= clinica.password %></td>
-        <td><%=l clinica.created_at %></td>
+        <td><%= link_to @clinicas.nome, clinica_path(@clinicas) %></td>
+        <td><%= @clinicas.email %></td>
+        <td><%=l @clinicas.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_clinica_path(clinica), :class => 'btn btn-mini' %>
+                      edit_clinica_path(@clinicasclinica), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      clinica_path(clinica),
+                      clinica_path(@clinicas),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
-    <% end %>
   </tbody>
 </table>
 
