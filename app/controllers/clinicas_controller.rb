@@ -32,9 +32,7 @@ class ClinicasController < ApplicationController
   
   # POST /clinicas.json
   def create
-    raise 'erro'
     @clinica = Clinica.new(clinica_params)
-
     respond_to do |format|
       if @clinica.save
         format.html { redirect_to @clinica, notice: 'Clinica was successfully created.' }
