@@ -11,7 +11,13 @@
 <% end %>
 <%= f.input :nome %>
 <%= f.input :email %>
+<%if params[:action] != 'edit' %>
 <%= f.input :password, label: 'Senha' %>
+<% end %>
+<br>
+<%if params[:action] == 'edit' %>
+<%= f.file_field :logo, label: 'Logo' %>
+<% end %>
 <div class="form-actions">
 	<%= f.button :submit, :class => 'btn-primary' %>
 	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),

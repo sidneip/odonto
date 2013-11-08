@@ -38,6 +38,10 @@ GEM
       rails (>= 3.1)
     builder (3.1.4)
     callsite (0.0.11)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -83,6 +87,11 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.7)
     mysql2 (0.3.13)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     polyglot (0.3.3)
     rack (1.5.2)
     rack-contrib (1.1.0)
@@ -162,6 +171,7 @@ DEPENDENCIES
   less-rails
   meta_request
   mysql2
+  paperclip
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc

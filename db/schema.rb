@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009190322) do
+ActiveRecord::Schema.define(version: 20131108212359) do
 
   create_table "clinicas", force: true do |t|
     t.string   "nome"
@@ -19,7 +19,11 @@ ActiveRecord::Schema.define(version: 20131009190322) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",     default: true
+    t.boolean  "status",            default: true
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "consulta_procedimentos", force: true do |t|

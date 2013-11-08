@@ -5,6 +5,7 @@ class Clinica < ActiveRecord::Base
   before_update :encrypt
   validates_uniqueness_of :email
   validates_presence_of   :password
+  has_attached_file :logo, :styles => { :small => "150x150" }
   def encrypt
     self.password = Digest::MD5.hexdigest(password)
   end

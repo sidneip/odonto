@@ -74,6 +74,6 @@ class ClinicasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinica_params
-      params.require(:clinica).permit(:nome, :email, :password)
+      params.require(:clinica).permit(:nome, :email, :password, :logo)
     end
 end
