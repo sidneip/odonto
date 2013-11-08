@@ -6,6 +6,7 @@ class CreateClinicas < ActiveRecord::Migration
       t.string :email
       t.string :password
       t.timestamps
+      t.boolean :status, :default => true
     end
   end
   def down

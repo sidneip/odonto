@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def create
   	user = Clinica.authenticatewithmailpass(params[:session][:email], params[:session][:password])
-  	  if user
+      if user
   	    session[:user_id] = user.id
         session[:tipo]    = 'clinica'
         session[:clinica_id] = user.id
