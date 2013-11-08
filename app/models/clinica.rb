@@ -3,7 +3,8 @@ require 'digest/md5'
 class Clinica < ActiveRecord::Base
   before_save   :encrypt
   before_update :encrypt
-
+  validates_uniqueness_of :email
+  validates_presence_of   :password
   def encrypt
     self.password = Digest::MD5.hexdigest(password)
   end
