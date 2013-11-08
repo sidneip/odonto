@@ -43,7 +43,11 @@
 <div class="jumbotron">
   <h1>Odontow!</h1>
     <p class="lead">Automação para clinicas odontologicas!</p>
-    <%= link_to "Registrar", registrar_path, :class => "btn btn-large btn-success" %>
+    <% unless current_user%>
+      <%= link_to "Registrar", registrar_path, :class => "btn btn-large btn-success" %>
+    <% else %>
+      <%= link_to('Sair', sessions_path, :method => 'delete', :class => "btn btn-large btn-success" ) -%>
+    <% end %>
 </div>
 
 <hr>
