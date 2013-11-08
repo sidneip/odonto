@@ -9,5 +9,8 @@
 #   dentista = Dentista.create!
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-	
+	5.times do |n|
+		Clinica.create!(:nome => "teste#{n}" :email => "teste#{n}@odontow.com", :password => '123456')
+	end
+
 
