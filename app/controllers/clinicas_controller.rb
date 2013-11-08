@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 #encoding: utf-8
+require 'digest/md5'
 class ClinicasController < ApplicationController
   before_action :set_clinica, only: [:show, :edit, :update, :destroy]
   before_action :is_logged?, except:[:new, :create]
@@ -28,8 +29,10 @@ class ClinicasController < ApplicationController
   end
 
   # POST /clinicas
+  
   # POST /clinicas.json
   def create
+    raise 'erro'
     @clinica = Clinica.new(clinica_params)
 
     respond_to do |format|

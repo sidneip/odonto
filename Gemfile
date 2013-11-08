@@ -8,9 +8,9 @@ gem "twitter-bootstrap-rails"
 gem 'simple_form'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
-gem "better_errors"
-gem "debugger"
-gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 gem 'mysql2'
 
 # Use mysql as the database for Active Record
