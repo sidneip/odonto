@@ -17,6 +17,9 @@
 <br>
 <%if params[:action] == 'edit' %>
 <%= f.file_field :logo, label: 'Logo' %>
+<%if @clinica.logo.nil? %>
+<%= image_tag @clinica.logo.url(:small) %>
+<%end%>
 <% end %>
 <div class="form-actions">
 	<%= f.button :submit, :class => 'btn-primary' %>
@@ -24,3 +27,4 @@
 	clinicas_path, :class => 'btn' %>
 </div>
 <% end %>
+	
