@@ -6,6 +6,7 @@ Odonto::Application.routes.draw do
   resources :sessions do
     post 'create',  :on => :collection
     get  'dentista', :on => :collection
+    post 'create_dentista', :on => :collection
   end
   resources :descritivo_faturas
 

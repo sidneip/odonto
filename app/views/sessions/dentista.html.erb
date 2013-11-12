@@ -1,0 +1,10 @@
+<%= simple_form_for :session, :url => url_for(:action => 'create_dentista', :controller => 'sessions', :html => { :class => 'form-horizontal' }),
+    :method => 'post' do |f| %>
+  <div id="legend">
+      <legend class="">Login Dentista</legend>
+    </div>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <hr>
+  <%= f.button :submit, :value => 'Entrar', :class => 'btn btn-success' %>
+<% end %>
