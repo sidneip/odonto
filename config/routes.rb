@@ -26,7 +26,9 @@ Odonto::Application.routes.draw do
 
   resources :convenios
 
-  resources :pacientes
+  resources :pacientes do
+    get 'atestado', :on => :collection
+  end
 
   get "/registrar", :controller => "clinicas", :action=>"new"
   get "/login", :controller => "sessions", :action=>"new"

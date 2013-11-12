@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20131108212359) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",            default: true
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"

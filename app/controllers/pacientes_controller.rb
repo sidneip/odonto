@@ -26,6 +26,9 @@ class PacientesController < ApplicationController
     @paciente = Paciente.new
   end
 
+  def atestado
+  end
+
   # GET /pacientes/1/edit
   def edit
     if @paciente.nil?

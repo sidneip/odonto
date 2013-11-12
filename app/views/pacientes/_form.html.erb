@@ -1,4 +1,13 @@
 <%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
+<div class="row">
+  <div class="alert alert-error">
+<a class="close" data-dismiss="alert">x</a>
+<% @paciente.errors.full_messages.each do |msg| %>
+  <%= msg %>
+<br>
+<% end %>
+</div>
+</div>
   <div class="row">
   <div class="span6">
   <div class="control-group">
