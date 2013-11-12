@@ -13,9 +13,15 @@ class ApplicationController < ActionController::Base
       session[:clinica_id] = nil
       return nil
     else
-      @current_user ||= Clinica.find(session[:clinica_id])
+      if session[:tipo] == 'clinica'
+        @current_user ||= Clinica.find(session[:clinica_id])
+      end
+      if session[:tipo] == 'dentista'
+        @current_user ||= Dentista.find(session[:user_id])
+      end
     end
   end
+
   
   def is_logged?
   	if current_user.nil?

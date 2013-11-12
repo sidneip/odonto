@@ -8,6 +8,22 @@ class SessionsController < ApplicationController
   	end
   end
 
+  def dentista
+  end
+
+  def create_dentista
+    user = Dentista.authenticatewithmailpass(params[:session][:email], params[:session][:password])
+      if user
+        session[:user_id] = user.id
+        session[:tipo]    = 'dentista'
+        session[:clinica_id] = user.clinica.id
+        redirect_to root_url, :notice => "Logado!"
+      else
+        flash.now.alert = "Email ou Senha Invalido"
+        render dentista_sessions_path
+      end
+  end
+
   def create
   	user = Clinica.authenticatewithmailpass(params[:session][:email], params[:session][:password])
       if user
