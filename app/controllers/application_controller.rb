@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
+  helper_method :current_user
+  helper_method :is_logged?
   private
-
+  
   def current_user
     if(Clinica.where("id = ?", session[:clinica_id]).count < 1 || session[:clinica_id].nil?)
       session[:user_id] = nil
@@ -23,10 +24,10 @@ class ApplicationController < ActionController::Base
     return @current_user
   end
 
-  
+  # REFATORAR ESSE METHOD DE AUTORIZACAO  
   def is_logged?
-  	if @current_user.nil?
-  		redirect_to root_url, :alert => "Voce nao esta logado"
+    if session[:clinica_id].nil?
+      redirect_to root_url, :alert => "Voce nao esta logado"
     end
   end
 
@@ -36,6 +37,4 @@ class ApplicationController < ActionController::Base
     return 'paciente' if session[:tipo] == 'paciente'
   end 
 
-  helper_method :current_user
-  helper_method :is_logged?
 end

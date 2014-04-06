@@ -14,6 +14,7 @@ gem 'meta_request'
 gem 'mysql2'
 gem 'paperclip'
 gem 'rmagick'
+gem 'debugger'
 # Use mysql as the database for Active Record
 gem 'bcrypt-ruby', '~> 3.0.0'
 # Use SCSS for stylesheets
