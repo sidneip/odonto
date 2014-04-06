@@ -14,17 +14,18 @@ class ApplicationController < ActionController::Base
       return nil
     else
       if session[:tipo] == 'clinica'
-        @current_user ||= Clinica.find(session[:clinica_id])
+        @current_user = Clinica.find(session[:clinica_id])
       end
       if session[:tipo] == 'dentista'
         @current_user ||= Dentista.find(session[:user_id])
       end
     end
+    return @current_user
   end
 
   
   def is_logged?
-  	if current_user.nil?
+  	if @current_user.nil?
   		redirect_to root_url, :alert => "Voce nao esta logado"
     end
   end
