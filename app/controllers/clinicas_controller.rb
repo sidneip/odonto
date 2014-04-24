@@ -36,8 +36,10 @@ class ClinicasController < ApplicationController
       if @clinica.save
         redirect_to root_url, :notice => "Cadastro feito com sucesso!"
       else
-        format.html { render action: 'new' }
-        format.json { render json: @clinica.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render :action => "new" }
+          format.json { render json: @clinica.errors, status: :unprocessable_entity }
+        end
       end
   end
 
