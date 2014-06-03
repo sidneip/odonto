@@ -102,6 +102,8 @@ class ConsultasController < ApplicationController
   end
 
   def confirmar_consulta
+    require 'debugger'
+    debugger
     @consulta = Consulta.find(params[:consulta_id])
     @consulta.update_attribute(:status, "Confirmado")
     respond_to do |format|
