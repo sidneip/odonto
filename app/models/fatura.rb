@@ -7,7 +7,7 @@ class Fatura < ActiveRecord::Base
   def total_fatura
   	@total = 0
   	self.descritivo_fatura.each do |descritivo|
-  		@total = @total + descritivo.valor
+  		@total = @total + descritivo.valor.to_i
   	end
   	return @total
   end

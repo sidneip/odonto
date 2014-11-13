@@ -2,12 +2,14 @@
 require 'digest/md5'
 class Clinica < ActiveRecord::Base
   before_save   :encrypt
-  before_update :encrypt
+  before_update   :encrypt
   validates_uniqueness_of :email
   validates_presence_of   :password
   has_attached_file :logo, :styles => { :small => "150x150" }
   def encrypt
-    self.password = Digest::MD5.hexdigest(password)
+    if new_record?
+      self.password = Digest::MD5.hexdigest(password)
+    end
   end
 
   def self.authenticate(password)
