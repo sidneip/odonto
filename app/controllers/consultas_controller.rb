@@ -102,13 +102,11 @@ class ConsultasController < ApplicationController
   end
 
   def confirmar_consulta
-    require 'debugger'
-    debugger
     @consulta = Consulta.find(params[:consulta_id])
-    @consulta.update_attribute(:status, "Confirmado")
-    respond_to do |format|
-      format.html { redirect_to consultas_path, notice: "Consulta do paciente #{@consulta.paciente.nome} na data #{@consulta.data} confirmada" } 
-    end
+    @consulta.update_attributes(:status => 'Confirmada')
+      respond_to do |format|
+        format.html { redirect_to consultas_path, notice: "Consulta do paciente #{@consulta.paciente.nome} na data #{@consulta.data} confirmada" } 
+      end
   end
 
   private

@@ -12,17 +12,21 @@ class Consulta < ActiveRecord::Base
   validate :horadentista
   before_save :horadentista, :on => :save
 
-  def horadentista()
+  def horadentista
   	hora_consulta = self.hora_inicio.gsub(":","")..self.hora_fim.gsub(":","")
     consultas = Consulta.where("dentista_id='#{self.dentista_id}' AND data = '#{self.data}'")
     consultas.each do |consulta|
       hora_existente  = consulta.hora_inicio.gsub(":","")..consulta.hora_fim.gsub(":","")
-      puts hora_existente
-      if hora_consulta.include?(hora_existente)
+      if hora_consulta.include?(hora_existente) && self.paciente_id != consulta.paciente_id
       	errors.add(:data, "e Hora ocupada para o dentista")
       	return false
       end
       break
     end
+  end
+
+  def confirmada?
+    return true if self.status == "Confirmada"
+    return false
   end
 end
